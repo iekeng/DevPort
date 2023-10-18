@@ -1,0 +1,21 @@
+import React from 'react';
+import './App.css';
+import SignUp from './components/SignUp';
+import Footer from './components/Footer';
+import PortfolioPage from './components/PortfolioPage';
+import './components/PortfolioPage.css';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+
+function App() {
+  return (
+    <Router>
+    <Routes>
+      <Route path="/" element={<SignUp />} />
+      <Route path="/PortfolioPage" element={<PortfolioPage />} />
+    </Routes>
+    <Footer />
+  </Router>
+  );
+}
+
+export default App;
