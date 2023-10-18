@@ -9,10 +9,11 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 function App() {
   return (
     <Router>
-    <Routes>
+    {/* <Routes>
       <Route path="/" element={<SignUp />} />
       <Route path="/PortfolioPage" element={<PortfolioPage />} />
-    </Routes>
+    </Routes> */}
+    <PortfolioPage />
     <Footer />
   </Router>
   );

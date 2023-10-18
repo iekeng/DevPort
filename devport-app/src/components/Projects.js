@@ -67,7 +67,7 @@ const Projects = () => {
                         <p><span className="label">Description</span><br /><span className="nav-content" id="location">{projectDetails.description}</span></p>
                     </div>
                 </div>
-                <button id="edit-button" onClick={toggleEditMode}>Edit</button>
+                <button id="edit-button" type='button' className='LSbutton' onClick={toggleEditMode}>Edit</button>
             </section>
 
             {editMode && (
@@ -75,22 +75,26 @@ const Projects = () => {
                     {/* Form to edit project details */}
                     <h2>Edit Project</h2>
                     <form id="project-form">
-                        <label htmlFor="projectName-input">Project Name:</label>
-                        <input type="text" id="projectName-input" name="projectName" value={projectDetails.projectName} onChange={(e) => setProjectDetails({ ...projectDetails, projectName: e.target.value })} />
-
-                        <label htmlFor="repository-input">Repository:</label>
-                        <input type="text" id="repository-input" name="repository" value={projectDetails.repository} onChange={(e) => setProjectDetails({ ...projectDetails, repository: e.target.value })} />
-
-                        <label htmlFor="liveURL-input">Live URL:</label>
-                        <input type="text" id="liveURL-input" name="liveURL" value={projectDetails.liveURL} onChange={(e) => setProjectDetails({ ...projectDetails, liveURL: e.target.value })} />
-
-                        <label htmlFor="description-input">Description:</label>
-                        <input type="text" id="description-input" name="description" value={projectDetails.description} onChange={(e) => setProjectDetails({ ...projectDetails, description: e.target.value })} />
-
+                    <div className="label-input-pair">
+                        <label htmlFor="projectName-input" className="label">Project Name</label>
+                        <input type="text" id="projectName-input" className="nav-content" name="projectName" value={projectDetails.projectName} onChange={(e) => setProjectDetails({ ...projectDetails, projectName: e.target.value })} />
+                    </div>
+                    <div className="label-input-pair">
+                        <label htmlFor="repository-input" className="label">Repository</label>
+                        <input type="text" id="repository-input" className="nav-content" name="repository" value={projectDetails.repository} onChange={(e) => setProjectDetails({ ...projectDetails, repository: e.target.value })} />
+                    </div>
+                    <div className="label-input-pair">
+                        <label htmlFor="liveURL-input" className="label">Live URL</label>
+                        <input type="text" id="liveURL-input" className="nav-content" name="liveURL" value={projectDetails.liveURL} onChange={(e) => setProjectDetails({ ...projectDetails, liveURL: e.target.value })} />
+                    </div>
+                    <div className="label-input-pair">
+                        <label htmlFor="description-input" className="label">Description</label>
+                        <input type="text" id="description-input" className="nav-content" name="description" value={projectDetails.description} onChange={(e) => setProjectDetails({ ...projectDetails, description: e.target.value })} />
+                    </div>
                         {/* Add input fields for other project details */}
-                        <button type="submit">Save</button>
+                        <button type="submit" className='LSbutton'>Save</button>
                     </form>
-                    <button onClick={toggleEditMode}>Cancel</button>
+                    <button onClick={toggleEditMode} id='add-button'>Cancel</button>
                 </div>
             )}
         </main>

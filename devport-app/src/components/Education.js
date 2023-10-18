@@ -176,8 +176,8 @@ const Education = () => {
                                 </div>
                             </div>
                             <div className="add-form-buttons">
-                                <button type="submit" className='LSbutton'>Save</button>
-                                <button type="button" className='LSbutton' onClick={cancelAddForm}>Cancel</button>
+                                <button type="submit" className='LSbutton' style={{ display: 'block', margin: '5px auto' }}>Save</button>
+                                <button type="button" className='LSbutton' onClick={cancelAddForm} style={{ display: 'block', margin: '0 auto'}}>Cancel</button>
                             </div>
                         </div>
                     )}

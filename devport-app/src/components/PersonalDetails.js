@@ -46,17 +46,16 @@ const PersonalDetails = () => {
 
     return (
         <main>
-            <h2>Edit Personal Details</h2>
             <form id="personal-details-form" onSubmit={handleSavePersonalDetails}>
-                <label htmlFor="name-input">Name:</label>
-                <input type="text" id="name-input" name="name" value={formData.name} onChange={handleInputChange} />
-                <label htmlFor="email-input">Email Address:</label>
-                <input type="text" id="email-input" name="email" value={formData.email} onChange={handleInputChange} />
-                <label htmlFor="linkedin-input">LinkedIn:</label>
-                <input type="text" id="linkedin-input" name="linkedin" value={formData.linkedin} onChange={handleInputChange} />
-                <label htmlFor="phone-input">Phone:</label>
-                <input type="text" id="phone-input" name="phone" value={formData.phone} onChange={handleInputChange} />
-                <button type="submit">Save</button>
+                <label htmlFor="name-input" className="label">Name</label>
+                <input type="text" id="name-input" className="nav-content" name="name" value={formData.name} onChange={handleInputChange} />
+                <label htmlFor="email-input" className="label">Email Address</label>
+                <input type="text" id="email-input" className="nav-content" name="email" value={formData.email} onChange={handleInputChange} />
+                <label htmlFor="linkedin-input" className="label">LinkedIn</label>
+                <input type="text" id="linkedin-input" className="nav-content" name="linkedin" value={formData.linkedin} onChange={handleInputChange} />
+                <label htmlFor="phone-input" className="label">Phone</label>
+                <input type="text" id="phone-input" className="nav-content" name="phone" value={formData.phone} onChange={handleInputChange} />
+                <button type="submit" className='LSbutton'>Save</button>
             </form>
         </main>
     );

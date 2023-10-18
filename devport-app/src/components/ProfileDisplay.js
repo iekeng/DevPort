@@ -39,15 +39,16 @@ const ProfileDisplay = () => {
                     <img
                         src={userProfile.avatar_url}
                         alt="User Avatar"
+                        id='profilepic'
                         style={{ width: '100px', height: '100px', borderRadius: '50%', marginBottom: '10px' }}
                     />
-                    <h2 style={{ fontSize: '13px' }}>
+                    <p style={{ fontSize: '13px', fontStyle: 'italic', color: 'white' }} id='profilename'>
                         {userProfile.firstname} {userProfile.lastname}
-                    </h2>
+                    </p>
                 </>
             )}
-            {loading && <h2 style={{ fontSize: '13px' }}>Loading...</h2>}
-            {!userProfile && !loading && <h2 style={{ fontSize: '13px' }}>No user profile found</h2>}
+            {loading && <p style={{ fontSize: '13px', fontStyle: 'italic', color: 'white' }}>Loading...</p>}
+            {!userProfile && !loading && <p style={{ fontSize: '13px', fontStyle: 'italic', color: 'white' }}>No profile found</p>}
         </div>
     );
 };

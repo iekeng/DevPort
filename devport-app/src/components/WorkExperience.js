@@ -133,7 +133,7 @@ const Work = () => {
                 </div>
             </section>
             <section id="workexperience-list" className="content-container">
-                <section className="content-container">
+                <section className="content-container" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                 <div className="content-container">
                     <div className="content-container">
                 {isAdding && (

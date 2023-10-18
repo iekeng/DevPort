@@ -79,22 +79,23 @@ const Skills = () => {
           <div>
             <h2>Skills</h2>
             <p>{skillsDetails.skills}</p>
-            <button onClick={toggleEditMode}>Edit</button>
+            <button type='button' className='LSbutton' onClick={toggleEditMode}>Edit</button>
           </div>
         ) : (
           <div id='edit-skills-details'>
             <h2>Edit Skills</h2>
             <form id='skills-form' onSubmit={(e) => e.preventDefault()}>
-              <label htmlFor='skills-input'>Skills:</label>
+              <label htmlFor='skills-input' className="label">Skills:</label>
               <input
                 type='text'
                 id='skills-input'
+                className="nav-content"
                 name='skills'
                 value={skillsDetails.skills}
                 onChange={(e) => setSkillsDetails({ skills: e.target.value })}
               />
-              <button onClick={() => saveSkillsToDB(skillsDetails.skills)}>Save</button>
-              <button onClick={toggleEditMode}>Cancel</button>
+              <button type='submit' onClick={() => saveSkillsToDB(skillsDetails.skills)}>Save</button>
+              <button onClick={toggleEditMode} className='LSbutton'>Cancel</button>
             </form>
           </div>
         )}

@@ -48,7 +48,7 @@ const SignUp = () => {
                 <img id="logo" src={DevPort_Logo} alt="Logo" />
             </div>
             <h2 id='signupsubtitle'> Sign Up</h2>
-            <button className="LSbutton" onClick={authorizeGitHubSignup} style={{borderRadius: '5px', boxShadow: '5px 5px 5px black'}}> 
+            <button type='submit' className="LSbutton" onClick={authorizeGitHubSignup} style={{borderRadius: '5px', boxShadow: '5px 5px 5px black'}}> 
             <img src={GitHubLogo} alt="GitHub Logo" id='githublogo' />Authorize with GitHub</button>
             {/* <button className="LSbutton" onClick={handleGitHubSignUp}>GitHub Sign Up</button> */}
         </div>
