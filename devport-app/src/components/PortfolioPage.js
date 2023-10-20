@@ -12,21 +12,22 @@ import { Link } from 'react-router-dom';
 
 const PortfolioPage = () => {
     const [activeSection, setActiveSection] = useState('Education');
+    const userId = localStorage.getItem('userId');
 
     const renderSection = () => {
         switch (activeSection) {
             case 'PersonalDetails':
                 return <PersonalDetails />;
             case 'Education':
-                return <Education />;
+                return <Education userId={userId}/>;
             case 'Skills':
-                return <Skills />;
+                return <Skills userId={userId}/>;
             case 'WorkExperience':
-                return <WorkExperience />;
+                return <WorkExperience userId={userId}/>;
             case 'Projects':
-                return <Projects />;
+                return <Projects userId={userId}/>;
             case 'Review':
-                return <Review />;
+                return <Review userId={userId}/>;
             default:
                 return null;
         }
@@ -48,7 +49,7 @@ const PortfolioPage = () => {
     return (
         <div>
             <section className="header">
-                <Link to="/SignUpForm">
+                <Link to="/">
                     <img id="logo" src={DevPort_Logo} alt="Logo" />
                 </Link>
             <section className="content-container" >

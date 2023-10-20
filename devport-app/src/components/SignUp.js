@@ -16,7 +16,7 @@ const SignUp = () => {
         setOauthState(state);
     
         // Redirect the user to the GitHub authorization URL
-        const githubAuthUrl = `http://165.227.108.97/oauth/`;
+        const githubAuthUrl = `http://165.227.108.97/oauth`;
         window.location.href = githubAuthUrl;
 
         // After the GitHub OAuth process is complete, you can sign up the user

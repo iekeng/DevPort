@@ -20,7 +20,7 @@ const LandingPage = () => {
         <div style={{ marginRight: '10px' }}>
       </div>
         <div id='LPbuttons'>
-          <LogInButton/>
+          <LogInButton />
           </div>
         </div>
       </header>
@@ -35,8 +35,8 @@ const LandingPage = () => {
       <section className="partners">
           {/* <h1>Partners</h1> */}
             <div className="partners-logos" style={{ display: 'flex', flexDirection: 'row-reverse', justifyContent: 'space-around'}}>
-            <img className="logo" src={DigitalOceanLogo} alt="Digital Ocean Logo" style={{ width: '8%', marginRight: '5px' }} />
             <img className="logo" src={ReactLogo} alt="React Logo" style={{ width: '4%', marginRight: '30px' }} />
+            <img className="logo" src={DigitalOceanLogo} alt="Digital Ocean Logo" style={{ width: '8%', marginRight: '5px' }} />
             <img className="logo" src={GitHubLogo} alt="GitHub Logo" style={{ width: '4%', marginRight: '30px' }} />
             <img className="logo" src={NodejsLogo} alt="Nodejs Logo" style={{ width: '8%', marginRight: '30px' }} />
             </div>
