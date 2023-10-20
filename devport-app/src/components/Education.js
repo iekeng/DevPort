@@ -116,7 +116,7 @@ const Education = ({ userId, onSave }) => {
                 </section>
                 <button type="submit" className='LSbutton' >Save</button>
             
-            <section id="education-list" className="content-container">
+            <section id="education-list">
                 <section>
                 <div className="content-container">
                     <div className="content">
@@ -191,8 +191,7 @@ const Education = ({ userId, onSave }) => {
                                 <button type="button" className='LSbutton' onClick={cancelAddForm} style={{ display: 'block', margin: '0 auto'}}>Cancel</button>
                             </div>
                         </div>
-                            </div>
-                            
+                    </div>       
                     )}
                     </div>
                 </div>
