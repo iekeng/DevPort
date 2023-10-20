@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c5912a51.css",
+    "main.js": "/static/js/main.87332b92.js",
+    "static/js/651.b9eedae7.chunk.js": "/static/js/651.b9eedae7.chunk.js",
+    "static/media/React_Logo.png": "/static/media/React_Logo.fb59dfc6bb1bac6b0ad0.png",
+    "static/media/DevPort Logo.png": "/static/media/DevPort Logo.78c9901575aad42fc5b9.png",
+    "static/media/Nodejs_Logo.png": "/static/media/Nodejs_Logo.cd935f45c8393cb11f8c.png",
+    "static/media/DigitalOcean-Logo.png": "/static/media/DigitalOcean-Logo.37e33ad315b94c8d1eae.png",
+    "index.html": "/index.html",
+    "main.c5912a51.css.map": "/static/css/main.c5912a51.css.map",
+    "main.87332b92.js.map": "/static/js/main.87332b92.js.map",
+    "651.b9eedae7.chunk.js.map": "/static/js/651.b9eedae7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c5912a51.css",
+    "static/js/main.87332b92.js"
+  ]
+}
