@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Education = () => {
-    const [userId] = useState(localStorage.getItem('userId'));
+const Education = ({ userId, onSave }) => {
+    // const [userId] = useState(localStorage.getItem('userId'));
     const [formData, setFormData] = useState({
         institution: '',
         course: '',
@@ -42,6 +42,7 @@ const Education = () => {
             if (response.status === 201) {
                 console.log('Education details saved successfully');
             }
+            onSave('Skills');
         } catch (error) {
             console.error('Error saving education details', error);
         }
@@ -113,7 +114,7 @@ const Education = () => {
                         </div>
                     </div>
                 </section>
-                <button type="submit" className='LSbutton'>Save</button>
+                <button type="submit" className='LSbutton' >Save</button>
             
             <section id="education-list" className="content-container">
                 <section>
@@ -185,12 +186,13 @@ const Education = () => {
                                         onChange={handleInputChange}
                                     />
                                 </div>
-                            </div>
-                            <div className="add-form-buttons">
+                                <div className="add-form-buttons">
                                 <button type="submit" className='LSbutton' style={{ display: 'block', margin: '5px auto' }}>Save</button>
                                 <button type="button" className='LSbutton' onClick={cancelAddForm} style={{ display: 'block', margin: '0 auto'}}>Cancel</button>
                             </div>
                         </div>
+                            </div>
+                            
                     )}
                     </div>
                 </div>

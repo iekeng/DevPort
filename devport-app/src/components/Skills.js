@@ -98,7 +98,7 @@ const Skills = () => {
               />
             </div>
               <button type='submit' onClick={saveSkillsToDB}>Save</button>
-              <button onClick={toggleEditMode} className='LSbutton'>Cancel</button>
+              <button type='button' onClick={toggleEditMode} style={{ display: 'block', margin: '0 auto' }} className='LSbutton'>Cancel</button>
             </form>
           </div>
         )}

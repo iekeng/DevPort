@@ -14,20 +14,24 @@ const PortfolioPage = () => {
     const [activeSection, setActiveSection] = useState('Education');
     const userId = localStorage.getItem('userId');
 
+    const handleSectionChange = (nextSection) => {
+        setActiveSection(nextSection);
+    };
+
     const renderSection = () => {
         switch (activeSection) {
             case 'PersonalDetails':
-                return <PersonalDetails />;
+                return <PersonalDetails onSave={handleSectionChange} />;
             case 'Education':
-                return <Education userId={userId}/>;
+                return <Education userId={userId} onSave={handleSectionChange} />;
             case 'Skills':
-                return <Skills userId={userId}/>;
+                return <Skills userId={userId} onSave={handleSectionChange} />;
             case 'WorkExperience':
-                return <WorkExperience userId={userId}/>;
+                return <WorkExperience userId={userId} onSave={handleSectionChange} />;
             case 'Projects':
-                return <Projects userId={userId}/>;
+                return <Projects userId={userId} onSave={handleSectionChange} />;
             case 'Review':
-                return <Review userId={userId}/>;
+                return <Review userId={userId} onSave={handleSectionChange} />;
             default:
                 return null;
         }

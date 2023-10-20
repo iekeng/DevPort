@@ -94,7 +94,7 @@ const Projects = () => {
                         {/* Add input fields for other project details */}
                         <button type="submit" className='LSbutton'>Save</button>
                     </form>
-                    <button onClick={toggleEditMode} id='add-button'>Cancel</button>
+                    <button onClick={toggleEditMode} style={{ display: 'block', margin: '0 auto' }} id='add-button'>Cancel</button>
                 </div>
             )}
         </main>

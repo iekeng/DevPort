@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Work = ({ userId }) => {
+const Work = ({ userId, onSave }) => {
     const [isHidden, setIsHidden] = useState(true);
     const [formData, setFormData] = useState({
         company: '',
@@ -36,6 +36,7 @@ const Work = ({ userId }) => {
             if (response.status === 200) {
                 console.log('Work details saved successfully');
             }
+            onSave('Projects');
         } catch (error) {
             console.error('Error saving work details', error);
         }
@@ -130,11 +131,11 @@ const Work = ({ userId }) => {
                         <div className="label-input-pair">
                             <label htmlFor="achievement" className="label">Responsibilities</label>
                             <textarea
-                                id="achievement"
+                                id="responsibilities"
                                 className="nav-content"
-                                name="achievement"
+                                name="responsibilities"
                                 placeholder='- Enter your responsibilities in a list format...'
-                                value={formData.achievement}
+                                value={formData.responsibilities}
                                 onChange={handleChange}
                             />
                         </div>
@@ -210,7 +211,7 @@ const Work = ({ userId }) => {
                                         <label className="label">Responsibilities</label>
                                         <textarea
                                             className="nav-content"
-                                            name="achievement"
+                                            name="responsibilities"
                                             placeholder='- Enter your responsibilities in a list format...'
                                             value={formData.achievement}
                                             onChange={handleChange}

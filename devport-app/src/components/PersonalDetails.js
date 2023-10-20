@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const PersonalDetails = ({ userId }) => {
+const PersonalDetails = ({ userId, onSave }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -36,6 +36,7 @@ const PersonalDetails = ({ userId }) => {
                 localStorage.setItem('userId', userId);
                 console.log('User ID saved to localStorage');
             }
+            onSave('Education');
         } catch (error) {
             console.error('Error saving personal details', error);
         }
