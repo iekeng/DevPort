@@ -13,7 +13,7 @@ const ProfileDisplay = () => {
         try {
             const access_token = localStorage.getItem('access_token');
             if (access_token) {
-                const response = await axios.get('/api/user/profile', {
+                const response = await axios.get('http://http://165.227.108.97/api/user/profile', {
                     headers: {
                         'Authorization': `Bearer ${access_token}`,
                     },

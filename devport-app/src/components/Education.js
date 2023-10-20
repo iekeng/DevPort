@@ -2,19 +2,21 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const Education = () => {
+    const [userId] = useState(localStorage.getItem('userId'));
     const [formData, setFormData] = useState({
         institution: '',
         course: '',
-        degree: '',
-        location: '',
         startDate: '',
         endDate: '',
+        location: '',
+        userId: userId,
     });
 
     const [educationDetails, setEducationDetails] = useState([]); // To store multiple education details
     const [isAdding, setIsAdding] = useState(false);
 
     const saveEducationDetails = async (data) => {
+        console.log('userId', userId);
         try {
             const access_token = localStorage.getItem('access_token');
             if (!access_token) {
@@ -22,13 +24,22 @@ const Education = () => {
                 return;
             }
 
-            const response = await axios.post('URL to save education details', data, {
+            const userId = localStorage.getItem('userId');
+            if (!userId){
+                console.error('User ID not found in localStorage');
+                return;
+            }
+
+            // Add the userId to the request data
+            data.userId = userId; // Assuming userId is available in the component
+
+            const response = await axios.post(`http://165.227.108.97/education/${userId}`, data, {
                 headers: {
                     'Authorization': `Bearer ${access_token}`,
                 },
             });
 
-            if (response.status === 200) {
+            if (response.status === 201) {
                 console.log('Education details saved successfully');
             }
         } catch (error) {
@@ -43,10 +54,10 @@ const Education = () => {
         setFormData({
             institution: '',
             course: '',
-            degree: '',
-            location: '',
             startDate: '',
             endDate: '',
+            location: '',
+            userId: userId,
         });
         setIsAdding(false);
     };
@@ -81,14 +92,10 @@ const Education = () => {
                                 <label htmlFor="course-input" className="label">Course</label>
                                 <input type="text" id="course-input" className="nav-content" name="course" value={formData.course} onChange={handleInputChange} />
                             </div>
-                            <div className="label-input-pair">
+                            {/* <div className="label-input-pair">
                                 <label htmlFor="degree-input" className="label">Degree</label>
                                 <input type="text" id="degree-input" className="nav-content" name="degree" value={formData.degree} onChange={handleInputChange} />
-                            </div>
-                            <div className="label-input-pair">
-                                <label htmlFor="location-input" className="label">Location</label>
-                                <input type="text" id="location-input" className="nav-content" name="location" value={formData.location} onChange={handleInputChange} />
-                            </div>
+                            </div> */}
                             <div className="dates">
                                 <div className="label-input-pair">
                                     <label htmlFor="startDate-input" className="label">Start Date</label>
@@ -98,6 +105,10 @@ const Education = () => {
                                     <label htmlFor="endDate-input" className="label">End Date</label>
                                     <input type="date" id="endDate-input" className="nav-content" name="endDate" value={formData.endDate} onChange={handleInputChange} />
                                 </div>
+                            </div>
+                            <div className="label-input-pair">
+                                <label htmlFor="location-input" className="label">Location</label>
+                                <input type="text" id="location-input" className="nav-content" name="location" value={formData.location} onChange={handleInputChange} />
                             </div>
                         </div>
                     </div>
@@ -132,7 +143,7 @@ const Education = () => {
                                         onChange={handleInputChange}
                                     />
                                 </div>
-                                <div className="label-input-pair">
+                                {/* <div className="label-input-pair">
                                     <label className="label">Degree</label>
                                     <input
                                         type="text"
@@ -141,17 +152,7 @@ const Education = () => {
                                         value={formData.degree}
                                         onChange={handleInputChange}
                                     />
-                                </div>
-                                <div className="label-input-pair">
-                                    <label className="label">Location</label>
-                                    <input
-                                        type="text"
-                                        className="nav-content"
-                                        name="location"
-                                        value={formData.location}
-                                        onChange={handleInputChange}
-                                    />
-                                </div>
+                                </div> */}
                                 <div className="dates">
                                     <div className="label-input-pair">
                                         <label className="label">Start Date</label>
@@ -173,6 +174,16 @@ const Education = () => {
                                             onChange={handleInputChange}
                                         />
                                     </div>
+                                </div>
+                                <div className="label-input-pair">
+                                    <label className="label">Location</label>
+                                    <input
+                                        type="text"
+                                        className="nav-content"
+                                        name="location"
+                                        value={formData.location}
+                                        onChange={handleInputChange}
+                                    />
                                 </div>
                             </div>
                             <div className="add-form-buttons">

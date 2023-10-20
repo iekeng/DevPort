@@ -15,6 +15,8 @@ const PortfolioPage = () => {
 
     const renderSection = () => {
         switch (activeSection) {
+            case 'PersonalDetails':
+                return <PersonalDetails />;
             case 'Education':
                 return <Education />;
             case 'Skills':
@@ -23,8 +25,6 @@ const PortfolioPage = () => {
                 return <WorkExperience />;
             case 'Projects':
                 return <Projects />;
-            case 'PersonalDetails':
-                return <PersonalDetails />;
             case 'Review':
                 return <Review />;
             default:
@@ -57,6 +57,13 @@ const PortfolioPage = () => {
                 <nav>
                     <ul>
                         <li>
+                            <button onClick={() => setActiveSection('PersonalDetails')}
+                            className='nav-button'
+                            style={activeSection === 'PersonalDetails' ? buttonStyle : {}}>
+                                Personal Details
+                            </button>
+                        </li>
+                        <li>
                             <button onClick={() => setActiveSection('Education')}
                             className='nav-button'
                             style={activeSection === 'Education' ? buttonStyle : {}}>
@@ -82,13 +89,6 @@ const PortfolioPage = () => {
                             className='nav-button'
                             style={activeSection === 'Projects' ? buttonStyle : {}}>
                                 Projects Details
-                            </button>
-                        </li>
-                        <li>
-                            <button onClick={() => setActiveSection('PersonalDetails')}
-                            className='nav-button'
-                            style={activeSection === 'PersonalDetails' ? buttonStyle : {}}>
-                                Personal Details
                             </button>
                         </li>
                         <li>

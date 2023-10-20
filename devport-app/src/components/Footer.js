@@ -3,29 +3,31 @@ import React from 'react'
 const Footer = () => {
   
   return (
-    <footer style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', color: 'white'}}>
+    <footer>
   <div className="footer">
     <div className="footer-content">
-      <div className="footer-section contact">
-        <h4>Contact Us</h4>
+      <div className="footer-section-contact">
+        <p>Contact Us</p>
         <div className="contact">
           <span>
-            <i className="fas fa-phone"></i> &nbsp; +1 123-456-789
+            <i className="fas fa-phone">+1 123-456-789</i> &nbsp;
           </span>
+          <br />
           <span>
-            <i className="fas fa-envelope"></i> &nbsp;
-            <a href="mailto:devport@devport.com">devport@devport.com</a>
+            <i className="fas fa-envelope">
+            <a href="mailto:devport@iomititi.tech">devport@iomititi.tech</a>
+            </i> &nbsp;
           </span>
         </div>
       </div>
-      <div className="footer-section about">
-        <h4 className="logo-text">DevPort Copyright &copy; 2023</h4>
+      <div className="footer-section-about">
+        <p className="logo-text">DevPort Copyright &copy; 2023</p>
         <p>
           Powered by <a href="https://www.github.com">GitHub</a>
         </p>
       </div>
-      <div className="footer-section social">
-        <h4>Follow Us</h4>
+      <div className="footer-section-social">
+        <p>Follow Us</p>
         <div className="social-links">
           {/* <a href="https://www.facebook.com" target="_blank">
             <i className="fab fa-facebook">@DevPort</i>
@@ -44,6 +46,10 @@ const Footer = () => {
     </div>
   </div>
 </footer>
+//   <footer style={{display: 'flex', flexDirection: 'column-reverse', justifyContent: 'space-between', alignItems: 'center'}}>
+//   <p style={{display: 'inline-block', fontWeight: 'bold'}}>Copyright &copy; 2023</p>
+//   <p style={{ fontWeight: 'bold'}}>Contact Us: <a href={`mailto:${emailAddress}`}>{emailAddress}</a></p>
+// </footer>
 )
 }
 

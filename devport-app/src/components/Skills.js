@@ -4,11 +4,9 @@ import axios from 'axios';
 const Skills = () => {
   const [isHidden, setIsHidden] = useState(true);
   const [editMode, setEditMode] = useState(false);
-  const [skillsDetails, setSkillsDetails] = useState({
-    skills: '',
-  });
-
+  const [skills, setSkills] = useState([]); // Store skills as an array
   const [access_token] = useState(localStorage.getItem('access_token'));
+  const [userId] = useState(localStorage.getItem('userId'));
 
   useEffect(() => {
     if (access_token) {
@@ -27,7 +25,7 @@ const Skills = () => {
 
   const fetchSkillsFromGitHubRepos = async () => {
     try {
-      const githubReposUrl = 'https://api.github.com/user/repos?per_page=100';
+      const githubReposUrl = `http://165.227.108.97/skill/${userId}/repos?per_page=100`;
 
       const response = await axios.get(githubReposUrl, {
         headers: {
@@ -36,26 +34,26 @@ const Skills = () => {
       });
 
       if (response.status === 200) {
-        const repoSkills = response.data.map((repo) => repo.language).filter(Boolean);
+        // Extract skills from repositories
+        const repoSkills = response.data
+          .map((repo) => repo.language)
+          .filter(Boolean);
 
-        // Combine the skills into a single string, separated by commas
-        const skills = repoSkills.join(', ');
-
-        setSkillsDetails({ skills });
+        setSkills(repoSkills);
       }
     } catch (error) {
       console.error('Error fetching skills from GitHub repositories', error);
     }
   };
 
-  const saveSkillsToDB = async (skillsData) => {
+  const saveSkillsToDB = async () => {
     try {
       // Replace with the URL of your server's endpoint for saving skills to the database
-      const saveSkillsUrl = 'http://your-server-url/api/saveSkills';
+      const saveSkillsUrl = 'http://165.227.108.97/api/saveSkills';
 
       const response = await axios.post(
         saveSkillsUrl,
-        { skills: skillsData },
+        { skills }, // Send skills as an array
         {
           headers: {
             Authorization: `Bearer ${access_token}`,
@@ -78,23 +76,28 @@ const Skills = () => {
         {isHidden ? (
           <div>
             <h2>Skills</h2>
-            <p>{skillsDetails.skills}</p>
+            <ul>
+              {skills.map((skill, index) => (
+                <li key={index}>{skill}</li>
+              ))}
+            </ul>
             <button type='button' className='LSbutton' onClick={toggleEditMode}>Edit</button>
           </div>
         ) : (
           <div id='edit-skills-details'>
             <h2>Edit Skills</h2>
             <form id='skills-form' onSubmit={(e) => e.preventDefault()}>
-              <label htmlFor='skills-input' className="label">Skills:</label>
+            <div className="label-input-pair">
+              <label htmlFor='skills-input' className='label'>Skills (comma-separated):</label>
               <input
                 type='text'
                 id='skills-input'
-                className="nav-content"
-                name='skills'
-                value={skillsDetails.skills}
-                onChange={(e) => setSkillsDetails({ skills: e.target.value })}
+                className='nav-content'
+                value={skills.join(', ')}
+                onChange={(e) => setSkills(e.target.value.split(', ').filter(Boolean))}
               />
-              <button type='submit' onClick={() => saveSkillsToDB(skillsDetails.skills)}>Save</button>
+            </div>
+              <button type='submit' onClick={saveSkillsToDB}>Save</button>
               <button onClick={toggleEditMode} className='LSbutton'>Cancel</button>
             </form>
           </div>

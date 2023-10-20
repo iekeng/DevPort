@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import DevPort_Logo from '../DevPort Logo.png';
 import authService from './AuthService';
 import GitHubLogo from '../GitHub Logo.png';
 
-
 const SignUp = () => {
     const [oauthState, setOauthState] = useState(null);
-    const clientId = '4b3a08d407cf3212a54f';
+    const clientId = '829a74c5da72aa7b820c';
     const navigate = useNavigate();
 
     const authorizeGitHubSignup = async () => {
@@ -17,7 +16,7 @@ const SignUp = () => {
         setOauthState(state);
     
         // Redirect the user to the GitHub authorization URL
-        const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=user:email&state=${state}`;
+        const githubAuthUrl = `http://165.227.108.97/oauth/`;
         window.location.href = githubAuthUrl;
 
         // After the GitHub OAuth process is complete, you can sign up the user
@@ -28,6 +27,7 @@ const SignUp = () => {
         if (code) {
             const response = await authService.signUpWithGitHub(code);
             if (response.access_token) {
+                
                 authService.saveToken(response.access_token);
             }
             console.log('Redirecting to /PortfolioPage');
@@ -45,7 +45,9 @@ const SignUp = () => {
     return (
         <div className="container">
             <div className="header">
+                <Link to='/'>
                 <img id="logo" src={DevPort_Logo} alt="Logo" />
+                </Link>
             </div>
             <h2 id='signupsubtitle'> Sign Up</h2>
             <button type='submit' className="LSbutton" onClick={authorizeGitHubSignup} style={{borderRadius: '5px', boxShadow: '5px 5px 5px black'}}> 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Work = () => {
+const Work = ({ userId }) => {
     const [isHidden, setIsHidden] = useState(true);
     const [formData, setFormData] = useState({
         company: '',
@@ -9,6 +9,8 @@ const Work = () => {
         startDate: '',
         endDate: '',
         achievement: '',
+        responsibilities: '',
+        userId: userId,
     });
     const [isAdding, setIsAdding] = useState(false);
 
@@ -23,8 +25,9 @@ const Work = () => {
                 console.error('Access token not found in localStorage');
                 return;
             }
-
-            const response = await axios.post('URL to save work details', data, {
+            
+            data.userId = userId;
+            const response = await axios.post(`http://165.227.108.97/experience/${userId}`, data, {
                 headers: {
                     'Authorization': `Bearer ${access_token}`,
                 },
@@ -124,6 +127,17 @@ const Work = () => {
                                 onChange={handleChange}
                             />
                         </div>
+                        <div className="label-input-pair">
+                            <label htmlFor="achievement" className="label">Responsibilities</label>
+                            <textarea
+                                id="achievement"
+                                className="nav-content"
+                                name="achievement"
+                                placeholder='- Enter your responsibilities in a list format...'
+                                value={formData.achievement}
+                                onChange={handleChange}
+                            />
+                        </div>
                         <button id="save-button" type="submit" className='LSbutton' onClick={toggleDetails}>
                             Save
                         </button>
@@ -188,6 +202,16 @@ const Work = () => {
                                             className="nav-content"
                                             name="achievement"
                                             placeholder='- Enter your achievements in a list format...'
+                                            value={formData.achievement}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+                                    <div className="label-input-pair">
+                                        <label className="label">Responsibilities</label>
+                                        <textarea
+                                            className="nav-content"
+                                            name="achievement"
+                                            placeholder='- Enter your responsibilities in a list format...'
                                             value={formData.achievement}
                                             onChange={handleChange}
                                         />

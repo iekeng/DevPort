@@ -32,7 +32,7 @@ const Projects = () => {
                 return;
             }
 
-            const response = await axios.get('https://api.github.com/user/repos', {
+            const response = await axios.get('http://165.227.108.97/api.github.com/user/repos', {
                 headers: {
                     'Authorization': `Bearer ${access_token}`,
                 },
@@ -61,10 +61,10 @@ const Projects = () => {
             <section id="personal-details">
                 <div className="content-container">
                     <div className="content">
-                        <p><span className="label">Project Name</span><br /><span className="nav-content" id="institution">{projectDetails.projectName}</span></p>
-                        <p><span className="label">Repository</span><br /><span className="nav-content" id="course"><a href={projectDetails.repository} target="_blank" rel="noopener noreferrer">{projectDetails.repository}</a></span></p>
-                        <p><span className="label">Live URL</span><br /><span className="nav-content" id="location"><a href={projectDetails.liveURL} target="_blank" rel="noopener noreferrer">{projectDetails.liveURL}</a></span></p>
-                        <p><span className="label">Description</span><br /><span className="nav-content" id="location">{projectDetails.description}</span></p>
+                        <p className="label-input-pair"><span className="label">Project Name</span><br /><span className="nav-content" id="institution">{projectDetails.projectName}</span></p>
+                        <p className="label-input-pair"><span className="label">Repository</span><br /><span className="nav-content" id="course"><a href={projectDetails.repository} target="_blank" rel="noopener noreferrer">{projectDetails.repository}</a></span></p>
+                        <p className="label-input-pair"><span className="label">Live URL</span><br /><span className="nav-content" id="location"><a href={projectDetails.liveURL} target="_blank" rel="noopener noreferrer">{projectDetails.liveURL}</a></span></p>
+                        <p className="label-input-pair"><span className="label">Description</span><br /><span className="nav-content" id="location">{projectDetails.description}</span></p>
                     </div>
                 </div>
                 <button id="edit-button" type='button' className='LSbutton' onClick={toggleEditMode}>Edit</button>

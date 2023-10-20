@@ -9,7 +9,7 @@ class AuthService {
             });
 
             if (response.data.access_token) {
-                this.saveToken(response.data.access_token);
+                this.saveTokenAndUserId(response.data.access_token, response.data.userId);
             }
 
             return response.data;
@@ -18,12 +18,14 @@ class AuthService {
         }
     }
 
-    saveToken(token) {
+    saveTokenAndUserId(token, userId) {
         localStorage.setItem("access_token", token);
+        localStorage.setItem("userId", userId);
     }
 
     logout() {
         localStorage.removeItem("access_token");
+        localStorage.removeItem("userId");
     }
 
     isAuthenticated() {
