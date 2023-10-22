@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Projects = () => {
+const Projects = ({ userId }) => {
     const [projectDetails, setProjectDetails] = useState([]);
     const [selectedProject, setSelectedProject] = useState(null);
     const [liveUrl, setLiveUrl] = useState('');
@@ -54,9 +54,25 @@ const Projects = () => {
         setEditMode(!editMode);
     };
 
-    const saveProjectDetails = () => {
-        // Implement the logic to save project details here
-        // This is just a placeholder for demonstration
+    const saveProjectDetails = async () => {
+        try {
+          const response = await axios.post(`https://165.227.108.97/project/${userId}`, {
+            projectName: selectedProject.name,
+            repository: selectedProject.html_url,
+            liveURL: liveUrl,
+            description: selectedProject.description
+          });
+            if (response.status === 201) {
+                console.log('Project details saved successfully');
+                console.log('Project details saved:', selectedProject);
+                toggleEditMode();
+            } else {
+                console.log('Failed to save project details');
+            }
+
+        } catch (error) {
+            console.error('Error saving project details', error);
+        }
         console.log('Project details saved:', selectedProject);
         toggleEditMode();
     };

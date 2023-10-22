@@ -46,10 +46,6 @@ const Footer = () => {
     </div>
   </div>
 </footer>
-//   <footer style={{display: 'flex', flexDirection: 'column-reverse', justifyContent: 'space-between', alignItems: 'center'}}>
-//   <p style={{display: 'inline-block', fontWeight: 'bold'}}>Copyright &copy; 2023</p>
-//   <p style={{ fontWeight: 'bold'}}>Contact Us: <a href={`mailto:${emailAddress}`}>{emailAddress}</a></p>
-// </footer>
 )
 }
 

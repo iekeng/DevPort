@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const PersonalDetails = ({ onSave }) => {
-    // const access_token = 'Bearer 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';
 
     const [formData, setFormData] = useState({
         name: '',
@@ -23,7 +22,7 @@ const PersonalDetails = ({ onSave }) => {
     const fetchPersonalDetailsFromGitHub = async () => {
         // Get access token from localStorage
         const access_token = localStorage.getItem('access_token');
-        console.log('access_token:', access_token);
+
         try {
             // Fetch personal details from GitHub API
             const userUrl = 'https://api.github.com/user';
@@ -66,7 +65,7 @@ const PersonalDetails = ({ onSave }) => {
             },
         };
 
-        // Send a PUT or POST request to update the details
+        // POST personal details to DB
         axios
             .post(updatePersonalDetailsApiUrl, updatedDetails)
             .then((response) => {
