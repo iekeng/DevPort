@@ -5,7 +5,7 @@ import Skills from './Skills';
 import WorkExperience from './WorkExperience';
 import PersonalDetails from './PersonalDetails';
 import Projects from './Projects';
-import Review from './Review';
+import GenerateCVButton from './GenerateCVButton';
 import ProfileDisplay from './ProfileDisplay';
 import { AccessTokenProvider } from './AccessTokenContext';
 import { Link } from 'react-router-dom';
@@ -31,7 +31,7 @@ const PortfolioPage = () => {
             case 'Projects':
                 return <Projects userId={userId} onSave={handleSectionChange} />;
             case 'Review':
-                return <Review userId={userId} onSave={handleSectionChange} />;
+                return <GenerateCVButton CV userId={userId} onSave={handleSectionChange} />;
             default:
                 return null;
         }
@@ -97,10 +97,10 @@ const PortfolioPage = () => {
                             </button>
                         </li>
                         <li>
-                            <button onClick={() => setActiveSection('Review')}
+                            <button onClick={() => setActiveSection('GenerateCVButton')}
                             className='nav-button'
-                            style={activeSection === 'Review' ? buttonStyle : {}}>
-                                Review
+                            style={activeSection === 'GenerateCVButton' ? buttonStyle : {}}>
+                                Generate CV
                             </button>
                         </li>
                     </ul>

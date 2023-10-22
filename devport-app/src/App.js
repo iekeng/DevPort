@@ -15,7 +15,7 @@ function App() {
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/PortfolioPage" element={<PortfolioPage />} />
     </Routes>
-    {/* <Footer /> */}
+    <Footer />
   </Router>
   );
 }

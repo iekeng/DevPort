@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Skills = () => {
-  const [isHidden, setIsHidden] = useState(true);
-  const [editMode, setEditMode] = useState(false);
-  const [skills, setSkills] = useState([]); // Store skills as an array
+  const [skills, setSkills] = useState([]);
   const [access_token] = useState(localStorage.getItem('access_token'));
-  const [userId] = useState(localStorage.getItem('userId'));
 
   useEffect(() => {
     if (access_token) {
@@ -14,94 +11,57 @@ const Skills = () => {
     }
   }, [access_token]);
 
-  const toggleDetails = () => {
-    setIsHidden(!isHidden);
-    setEditMode(false);
-  };
-
-  const toggleEditMode = () => {
-    setEditMode(!editMode);
-  };
-
   const fetchSkillsFromGitHubRepos = async () => {
     try {
-      const githubReposUrl = `http://165.227.108.97/skill/${userId}/repos?per_page=100`;
+      // Your GitHub access token (replace 'your_access_token' with your actual token)
+      const access_token = 'Bearer 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';
 
-      const response = await axios.get(githubReposUrl, {
+      // Fetch the user's repositories
+      const userReposUrl = 'https://api.github.com/user/repos';
+      const userReposResponse = await axios.get(userReposUrl, {
         headers: {
-          Authorization: `Bearer ${access_token}`,
+          Authorization: access_token,
         },
       });
 
-      if (response.status === 200) {
-        // Extract skills from repositories
-        const repoSkills = response.data
-          .map((repo) => repo.language)
-          .filter(Boolean);
+      if (userReposResponse.status === 200) {
+        const userRepos = userReposResponse.data;
+        const uniqueLanguages = new Set();
 
-        setSkills(repoSkills);
+        for (const repo of userRepos) {
+          const languagesUrl = repo.languages_url;
+
+          // Fetch the languages for each repository
+          const repoLanguagesResponse = await axios.get(languagesUrl, {
+            headers: {
+              Authorization: access_token,
+            },
+          });
+
+          if (repoLanguagesResponse.status === 200) {
+            const repoLanguages = Object.keys(repoLanguagesResponse.data);
+            repoLanguages.forEach((language) => uniqueLanguages.add(language));
+          }
+        }
+
+        setSkills(Array.from(uniqueLanguages)); // Convert the Set back to an array
       }
     } catch (error) {
       console.error('Error fetching skills from GitHub repositories', error);
     }
   };
 
-  const saveSkillsToDB = async () => {
-    try {
-      // Replace with the URL of your server's endpoint for saving skills to the database
-      const saveSkillsUrl = 'http://165.227.108.97/api/saveSkills';
-
-      const response = await axios.post(
-        saveSkillsUrl,
-        { skills }, // Send skills as an array
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        console.log('Skills data saved to the database successfully');
-        toggleEditMode();
-      }
-    } catch (error) {
-      console.error('Error saving skills data to the database', error);
-    }
-  };
-
   return (
     <main>
-      <section id='skills-details'>
-        {isHidden ? (
-          <div>
-            <h2>Skills</h2>
-            <ul>
-              {skills.map((skill, index) => (
-                <li key={index}>{skill}</li>
-              ))}
-            </ul>
-            <button type='button' className='LSbutton' onClick={toggleEditMode}>Edit</button>
-          </div>
-        ) : (
-          <div id='edit-skills-details'>
-            <h2>Edit Skills</h2>
-            <form id='skills-form' onSubmit={(e) => e.preventDefault()}>
-            <div className="label-input-pair">
-              <label htmlFor='skills-input' className='label'>Skills (comma-separated):</label>
-              <input
-                type='text'
-                id='skills-input'
-                className='nav-content'
-                value={skills.join(', ')}
-                onChange={(e) => setSkills(e.target.value.split(', ').filter(Boolean))}
-              />
-            </div>
-              <button type='submit' onClick={saveSkillsToDB}>Save</button>
-              <button type='button' onClick={toggleEditMode} style={{ display: 'block', margin: '0 auto' }} className='LSbutton'>Cancel</button>
-            </form>
-          </div>
-        )}
+      <section id='skills-details' style={{ display: 'block', margin: '0 auto' }}>
+        <div>
+          <h2>Skills</h2>
+          <ul style={{listStyle: 'none'}}>
+            {skills.map((skill, index) => (
+              <li key={index}>{skill}</li>
+            ))}
+          </ul>
+        </div>
       </section>
     </main>
   );

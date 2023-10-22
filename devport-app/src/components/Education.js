@@ -34,9 +34,7 @@ const Education = ({ userId, onSave }) => {
             data.userId = userId; // Assuming userId is available in the component
 
             const response = await axios.post(`http://165.227.108.97/education/${userId}`, data, {
-                headers: {
-                    'Authorization': `Bearer ${access_token}`,
-                },
+              
             });
 
             if (response.status === 201) {
@@ -116,7 +114,7 @@ const Education = ({ userId, onSave }) => {
                 </section>
                 <button type="submit" className='LSbutton' >Save</button>
             
-            <section id="education-list">
+            <section id="education-list" className="content-container">
                 <section>
                 <div className="content-container">
                     <div className="content">

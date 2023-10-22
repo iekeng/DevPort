@@ -37,22 +37,17 @@ const SignUp = () => {
             console.error('Error authorizing with GitHub:', error);
         }
     };
-    // const handleGitHubSignUp = () => {
-    //     window.location.href = '/PortfolioPage';
-    //     onProfileNameChange(profileNameInput);
-    //   };
 
     return (
         <div className="container">
             <div className="header">
                 <Link to='/'>
-                <img id="logo" src={DevPort_Logo} alt="Logo" />
+                    <img id="logo" src={DevPort_Logo} alt="Logo" />
                 </Link>
             </div>
             <h2 id='signupsubtitle'> Sign Up</h2>
             <button type='submit' className="LSbutton" onClick={authorizeGitHubSignup} style={{borderRadius: '5px', boxShadow: '5px 5px 5px black'}}> 
             <img src={GitHubLogo} alt="GitHub Logo" id='githublogo' />Authorize with GitHub</button>
-            {/* <button className="LSbutton" onClick={handleGitHubSignUp}>GitHub Sign Up</button> */}
         </div>
     );
 };

@@ -28,9 +28,9 @@ const LandingPage = () => {
       <section id='Valueproposition'>
             <h1 id='Valp-h1'>Elevate Your Profile</h1>
             <p className='Valueproposition-p' style={{marginTop: 0}}>DevPort streamlines the creation of a professional online portfolio for developers. With seamless GitHub integration, effortless profile setup, stunning design, and security at its core, DevPort empowers you to stand out in the tech world. Join DevPort and unlock your full potential in just a few clicks.</p>
-            <h1 id='Valp-h1' style={{marginTop: 0}}>How it Works</h1>
-            <p className='Valueproposition-p'>DevPort streamlines the creation of a professional online portfolio for developers. With seamless GitHub integration, effortless profile setup, stunning design, and security at its core, DevPort empowers you to stand out in the tech world. Join DevPort and unlock your full potential in just a few clicks.</p>
-            <Link to='/SignUp' style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column-reverse', justifyContent: 'center', alignItems: 'center'}}><button className="LPbuttonclass" style={{ backgroundColor: 'black'}}>Get Started</button></Link>
+            <h1 id='Valp-h1' style={{marginTop: '5px', marginBottom: '10px'}}>How it Works</h1>
+            <p className='Valueproposition-p'>Click the Get Started button, you'll be redirected to authenticate with your GitHub account. On successful authentication, you're redirected to the portfolio page where you fill in your details, when you're done, click the Review button to take a glimpse of your newly created portfolio. We also have download option for users to download their resumes in PDF format</p>
+            <Link to='/SignUp' style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column-reverse', justifyContent: 'center', alignItems: 'center'}}><button className="LPbuttonclass" style={{ backgroundColor: 'black', borderRadius: '20px'}}>Get Started</button></Link>
       </section>
       <section className="partners">
           {/* <h1>Partners</h1> */}

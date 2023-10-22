@@ -2,23 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Projects = () => {
-    const [isHidden, setIsHidden] = useState(true);
+    const [projectDetails, setProjectDetails] = useState([]);
+    const [selectedProject, setSelectedProject] = useState(null);
+    const [liveUrl, setLiveUrl] = useState('');
     const [editMode, setEditMode] = useState(false);
-    const [projectDetails, setProjectDetails] = useState({
-        projectName: '',
-        repository: '',
-        liveURL: '',
-        description: '',
-    });
-
-    const toggleDetails = () => {
-        setIsHidden(!isHidden);
-        setEditMode(false);
-    };
-
-    const toggleEditMode = () => {
-        setEditMode(!editMode);
-    };
 
     useEffect(() => {
         fetchUserProjectDetails();
@@ -26,29 +13,28 @@ const Projects = () => {
 
     const fetchUserProjectDetails = async () => {
         try {
-            const access_token = localStorage.getItem('access_token');
-            if (!access_token) {
-                console.error('Access token not found in localStorage');
-                return;
-            }
+            const access_token = 'Bearer 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';
 
-            const response = await axios.get('http://165.227.108.97/api.github.com/user/repos', {
+            const userReposUrl = 'https://api.github.com/user/repos';
+            const userReposResponse = await axios.get(userReposUrl, {
                 headers: {
-                    'Authorization': `Bearer ${access_token}`,
+                    Authorization: access_token,
                 },
             });
 
-            if (response.status === 200) {
-                // Find the first project with "has_pages" set to true
-                const projectData = response.data.find(project => project.has_pages);
+            if (userReposResponse.status === 200) {
+                const userProjects = userReposResponse.data;
 
-                if (projectData) {
-                    setProjectDetails({
-                        projectName: projectData.name,
-                        repository: projectData.html_url,
-                        liveURL: projectData.homepage,
-                        description: projectData.description,
-                    });
+                // Filter projects with GitHub Pages
+                const projectsWithPages = userProjects.filter(project => project.has_pages);
+                setProjectDetails(projectsWithPages);
+
+                if (projectsWithPages.length > 0) {
+                    // Select the first project by default
+                    handleProjectSelect(projectsWithPages[0]);
+
+                    // Set the Live URL using the desired format
+                    setLiveUrl(`https://${userProjects[0].owner.login}.github.io/${projectsWithPages[0].name}`);
                 }
             }
         } catch (error) {
@@ -56,47 +42,81 @@ const Projects = () => {
         }
     };
 
+    const handleProjectSelect = (project) => {
+        setSelectedProject(project);
+
+        // Update the Live URL when a project is selected
+        setLiveUrl(`https://${project.owner.login}.github.io/${project.name}`);
+    };
+
+    const toggleEditMode = () => {
+        setEditMode(!editMode);
+    };
+
+    const saveProjectDetails = () => {
+        // Implement the logic to save project details here
+        // This is just a placeholder for demonstration
+        console.log('Project details saved:', selectedProject);
+        toggleEditMode();
+    };
+
     return (
         <main>
-            <section id="personal-details">
-                <div className="content-container">
+            <section id="project-details" className='center-content'>
+                <div className='center-content'>
                     <div className="content">
-                        <p className="label-input-pair"><span className="label">Project Name</span><br /><span className="nav-content" id="institution">{projectDetails.projectName}</span></p>
-                        <p className="label-input-pair"><span className="label">Repository</span><br /><span className="nav-content" id="course"><a href={projectDetails.repository} target="_blank" rel="noopener noreferrer">{projectDetails.repository}</a></span></p>
-                        <p className="label-input-pair"><span className="label">Live URL</span><br /><span className="nav-content" id="location"><a href={projectDetails.liveURL} target="_blank" rel="noopener noreferrer">{projectDetails.liveURL}</a></span></p>
-                        <p className="label-input-pair"><span className="label">Description</span><br /><span className="nav-content" id="location">{projectDetails.description}</span></p>
-                    </div>
-                </div>
-                <button id="edit-button" type='button' className='LSbutton' onClick={toggleEditMode}>Edit</button>
-            </section>
+                        <div>
+                            {editMode ? (
+                                // Render edit form when in edit mode
+                                <form style={{marginTop: '20px'}}>
+                                    <div className="label-input-pair">
+                                        <label htmlFor="projectName-input" className="label">Project Name</label>
+                                        <input type="text" id="projectName-input" className="nav-content" name="projectName" value={selectedProject.name} />
+                                    </div>
+                                    <div className="label-input-pair">
+                                        <label htmlFor="projectName-input" className="label">Repository</label>
+                                        <input type="text" id="repository" className="nav-content" name="repository" value={selectedProject.html_url} />
+                                    </div>
+                                    <div className='label-input-pair'>
+                                        <label htmlFor='liveURL-input' className="label">Live URL</label>
+                                        <input type='text' id='liveURL-input' className="nav-content" name='liveURL' value={liveUrl} />
+                                    </div>
+                                    <div className='label-input-pair'>
+                                        <label htmlFor='description-input' className="label">Description</label>
+                                        <textarea id='description-input' className="nav-content" name='description' value={selectedProject.description} />
+                                    </div>
 
-            {editMode && (
-                <div id="edit-project-details">
-                    {/* Form to edit project details */}
-                    <h2>Edit Project</h2>
-                    <form id="project-form">
-                    <div className="label-input-pair">
-                        <label htmlFor="projectName-input" className="label">Project Name</label>
-                        <input type="text" id="projectName-input" className="nav-content" name="projectName" value={projectDetails.projectName} onChange={(e) => setProjectDetails({ ...projectDetails, projectName: e.target.value })} />
+                                    <button type="submit" className='LSbutton' onClick={saveProjectDetails} style={{margin: '10px'}}>Save</button>
+                                    <button type='submit' className='LSbutton' onClick={toggleEditMode}>Cancel</button>
+                                </form>
+                            ) : (
+                                // Display project details when not in edit mode
+                                <div>
+                                    <ul style={{ listStyle: 'none', fontSize: '15px', padding: 0 }}>
+                                        {projectDetails.map((project, index) => (
+                                            <li key={index} style={{ marginBottom: 0 }}>
+                                                <button onClick={() => handleProjectSelect(project)}>{project.name}</button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    
+                                </div>
+                            )}
+                        </div>
                     </div>
-                    <div className="label-input-pair">
-                        <label htmlFor="repository-input" className="label">Repository</label>
-                        <input type="text" id="repository-input" className="nav-content" name="repository" value={projectDetails.repository} onChange={(e) => setProjectDetails({ ...projectDetails, repository: e.target.value })} />
-                    </div>
-                    <div className="label-input-pair">
-                        <label htmlFor="liveURL-input" className="label">Live URL</label>
-                        <input type="text" id="liveURL-input" className="nav-content" name="liveURL" value={projectDetails.liveURL} onChange={(e) => setProjectDetails({ ...projectDetails, liveURL: e.target.value })} />
-                    </div>
-                    <div className="label-input-pair">
-                        <label htmlFor="description-input" className="label">Description</label>
-                        <input type="text" id="description-input" className="nav-content" name="description" value={projectDetails.description} onChange={(e) => setProjectDetails({ ...projectDetails, description: e.target.value })} />
-                    </div>
-                        {/* Add input fields for other project details */}
-                        <button type="submit" className='LSbutton'>Save</button>
-                    </form>
-                    <button onClick={toggleEditMode} style={{ display: 'block', margin: '0 auto' }} id='add-button'>Cancel</button>
                 </div>
-            )}
+                {selectedProject && !editMode && (
+                    <div className="center-content">
+                        <div className="content">
+                            <p className="label-input-pair"><span className="label">Project Name</span><br /><span className="nav-content" id="projectName">{selectedProject.name}</span></p>
+                            <p className="label-input-pair"><span className="label">Repository</span><br /><span className="nav-content" id="repository"><a href={selectedProject.html_url} target="_blank" rel="noopener noreferrer">{selectedProject.html_url}</a></span></p>
+                            <p className="label-input-pair"><span className="label">Live URL</span><br /><span className="nav-content" id="liveURL"><a href={liveUrl} target="_blank" rel="noopener noreferrer">{liveUrl}</a></span></p>
+                            <p className="label-input-pair"><span className="label">Description</span><br /><span className="nav-content" id="description">{selectedProject.description}</span></p>
+                        </div>
+                        <button type='submit' className='LSbutton' onClick={toggleEditMode}>Edit</button>
+                    </div>
+                )}
+            </section>
         </main>
     );
 }
