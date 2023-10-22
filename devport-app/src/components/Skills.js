@@ -12,15 +12,14 @@ const Skills = () => {
   }, [access_token]);
 
   const fetchSkillsFromGitHubRepos = async () => {
+    // Get access token from localStorage
+    const access_token = localStorage.getItem('access_token');
     try {
-      // Your GitHub access token (replace 'your_access_token' with your actual token)
-      const access_token = 'Bearer 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';
-
       // Fetch the user's repositories
       const userReposUrl = 'https://api.github.com/user/repos';
       const userReposResponse = await axios.get(userReposUrl, {
         headers: {
-          Authorization: access_token,
+          Authorization: `Bearer ${access_token}`,
         },
       });
 
@@ -58,7 +57,7 @@ const Skills = () => {
           <h2>Skills</h2>
           <ul style={{listStyle: 'none'}}>
             {skills.map((skill, index) => (
-              <li key={index}>{skill}</li>
+              <li key={index} className="nav-content">{skill}</li>
             ))}
           </ul>
         </div>

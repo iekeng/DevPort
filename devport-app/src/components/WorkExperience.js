@@ -20,12 +20,12 @@ const Work = ({ userId, onSave }) => {
 
     const saveWorkDetails = async (data) => {
         try {
-            // const access_token = localStorage.getItem('access_token');
-            const access_token = 'Bearer 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';
-            if (!access_token) {
-                console.error('Access token not found in localStorage');
-                return;
-            }
+            // // const access_token = localStorage.getItem('access_token');
+            // const access_token = 'Bearer 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';
+            // if (!access_token) {
+            //     console.error('Access token not found in localStorage');
+            //     return;
+            // }
 
             data.userId = userId;
             const response = await axios.post(`http://165.227.108.97/experience/${userId}`, data, {});

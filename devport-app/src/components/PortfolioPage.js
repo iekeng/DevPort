@@ -30,7 +30,7 @@ const PortfolioPage = () => {
                 return <WorkExperience userId={userId} onSave={handleSectionChange} />;
             case 'Projects':
                 return <Projects userId={userId} onSave={handleSectionChange} />;
-            case 'Review':
+            case 'GenerateCVButton':
                 return <GenerateCVButton CV userId={userId} onSave={handleSectionChange} />;
             default:
                 return null;

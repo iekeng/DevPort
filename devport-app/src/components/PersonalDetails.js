@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const PersonalDetails = ({ userId, onSave }) => {
-    const access_token = 'Bearer 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';
+const PersonalDetails = ({ onSave }) => {
+    // const access_token = 'Bearer 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';
 
     const [formData, setFormData] = useState({
         name: '',
@@ -21,19 +21,21 @@ const PersonalDetails = ({ userId, onSave }) => {
     }, []);
 
     const fetchPersonalDetailsFromGitHub = async () => {
+        // Get access token from localStorage
+        const access_token = localStorage.getItem('access_token');
+        console.log('access_token:', access_token);
         try {
             // Fetch personal details from GitHub API
             const userUrl = 'https://api.github.com/user';
 
             const response = await axios.get(userUrl, {
                 headers: {
-                    Authorization: access_token,
+                    Authorization: `Bearer ${access_token}`,
                 },
             });
 
             if (response.status === 200) {
                 const userData = response.data;
-                console.log(userData);
                 
                 setFormData({
                     name: userData.name,
@@ -58,16 +60,24 @@ const PersonalDetails = ({ userId, onSave }) => {
             name: formData.name,
             email: formData.email,
             phone: formData.phone,
-            socials: formData.socials,
-            userId: userId,
+            socials: {
+                ...formData.socials,  // Preserve the existing socials using the spread operator
+                linkedIn: formData.socials.linkedIn,
+            },
         };
 
         // Send a PUT or POST request to update the details
         axios
-            .put(updatePersonalDetailsApiUrl, updatedDetails)
+            .post(updatePersonalDetailsApiUrl, updatedDetails)
             .then((response) => {
-                if (response.status === 200) {
+                console.log(response);
+                if (response.status === 201) {
                     console.log('Personal details updated successfully');
+                    // Get userId from userData
+                    const userId = response.data._id.toString();
+                    // Save userId to localStorage
+                    localStorage.setItem('userId', userId);
+                    console.log('userId:', userId);
                     setIsEditing(false); // Turn off editing mode
                 } else {
                     console.error('Failed to update personal details');

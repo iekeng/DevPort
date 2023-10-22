@@ -27,7 +27,6 @@ const SignUp = () => {
         if (code) {
             const response = await authService.signUpWithGitHub(code);
             if (response.access_token) {
-                
                 authService.saveToken(response.access_token);
             }
             console.log('Redirecting to /PortfolioPage');

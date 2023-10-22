@@ -3,7 +3,8 @@ import authService from './AuthService';
 import { Link } from 'react-router-dom';
 
 function LogInButton() {
-  // Check if the user is authenticated. You can use your authentication logic here.
+  // Check if the user is authenticated. If so, redirect them to the PortfolioPage.
+  // If not, redirect them to the SignUp page.
   const checkAuthentication = () => {
     return authService.isAuthenticated();
   };

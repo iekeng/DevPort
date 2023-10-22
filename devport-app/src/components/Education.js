@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const Education = ({ userId, onSave }) => {
-    // const [userId] = useState(localStorage.getItem('userId'));
     const [formData, setFormData] = useState({
         institution: '',
         course: '',
