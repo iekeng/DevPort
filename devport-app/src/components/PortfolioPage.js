@@ -54,7 +54,7 @@ const PortfolioPage = () => {
         <div>
             <section className="header">
                 <Link to="/">
-                    <img id="logo" src={DevPort_Logo} alt="Logo" />
+                    <img id="logo" src={DevPort_Logo} alt="Logo" style={{width: '97px', height: '97px', marginTop: '10px'}}/>
                 </Link>
             <section className="content-container" >
                 <section className='content-container' style={{display: 'flex', justifyContent: 'center', alignItems: 'center',
