@@ -6,7 +6,6 @@ import GitHubLogo from '../GitHub Logo.png';
 
 const SignUp = () => {
     const [oauthState, setOauthState] = useState(null);
-    const clientId = '829a74c5da72aa7b820c';
     const navigate = useNavigate();
 
     const authorizeGitHubSignup = async () => {
@@ -41,7 +40,7 @@ const SignUp = () => {
         <div className="container">
             <div className="header">
                 <Link to='/'>
-                    <img id="logo" src={DevPort_Logo} alt="Logo" />
+                    <img id="logo" src={DevPort_Logo} alt="Logo" style={{width: '97px', height: '97px', marginTop: '10px'}} />
                 </Link>
             </div>
             <h2 id='signupsubtitle'> Sign Up</h2>

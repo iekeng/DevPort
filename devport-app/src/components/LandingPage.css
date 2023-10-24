@@ -9,7 +9,7 @@
  
  #LP-Header{
  
-    background: linear-gradient(to right, #0213ff, #fb0404);
+    background: linear-gradient(to right, #0213ff, #000000);
     padding: 5px;
     margin-right: 10px;
     border-radius: 0, 0, 10px, 0;
@@ -81,8 +81,7 @@
    box-shadow: 5px 5px 5px black;
    /* background: linear-gradient(to right, #fb0404, #0213ff);
    background: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(129, 126, 126));
-   background-size: cover;
-   background-position: center */
+   */
  }
  
  #Valp-h1 {
@@ -129,7 +128,7 @@
    padding: 20px;
    border-radius: 0;
    margin-bottom: 0;
-    background: linear-gradient(to right, #fefdff, #98a9f3, #d6d0f5);
+    background: linear-gradient(to right, #98a9f3, #bdc1dd, #98a9f3, #d6d0f5);
  }
  
  /* .partners h1 {

@@ -13,7 +13,7 @@ function LogInButton() {
     <div>
       {checkAuthentication() ? (
         <Link to="/PortfolioPage">
-          <button className="LPbuttonclass" style={{ backgroundColor: 'black' }}>
+          <button className="LPbuttonclass" style={{ backgroundColor: 'blue', fontWeight: 'bold' }}>
             Log In
           </button>
         </Link>

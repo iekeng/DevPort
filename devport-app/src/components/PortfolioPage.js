@@ -9,6 +9,7 @@ import GenerateCVButton from './GenerateCVButton';
 import ProfileDisplay from './ProfileDisplay';
 import { AccessTokenProvider } from './AccessTokenContext';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const PortfolioPage = () => {
     const [activeSection, setActiveSection] = useState('PersonalDetails');
@@ -17,6 +18,32 @@ const PortfolioPage = () => {
     const handleSectionChange = (nextSection) => {
         setActiveSection(nextSection);
     };
+
+    // const getAccessToken = async () => {
+    //     const code = window.location.search.split('code=')[1];
+    //     const response = await axios.post("https://github.com/login/oauth/access_token", {
+    //         client_id: "829a74c5da72aa7b820c",
+    //         client_secret: "dee0a345dbb4d993fefbeacf7c5372b15173b083",
+    //         code: code,
+    // }, {
+    //     headers: {
+    //         "Accept": "application/json"
+    //     }
+    // }) 
+    // if (response) {
+    //     if (response.status !== 200) {
+    //         console.log(response.stausText);
+    //         // res.status(500).send("Error excahnging code for token");
+    //         return;
+    //     }
+    //     const accessToken = response.data.access_token;
+    //     console.log("accessToken", accessToken);
+
+    //     // res.json({token: accessToken});
+    // }
+    // }
+
+    // getAccessToken();
 
     const renderSection = () => {
         switch (activeSection) {

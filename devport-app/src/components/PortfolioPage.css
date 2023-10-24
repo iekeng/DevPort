@@ -1,9 +1,11 @@
 html {
     scroll-behavior: smooth;
+    height: 100%;
+
 }
 
 .header {
-    background: linear-gradient(to right, #0213ff, #fb0404);
+    background: linear-gradient(to right, #0213ff, #000000);
     padding: 5px;
     margin-right: 10px;
     border-radius: 0, 0, 10px, 0;
@@ -33,7 +35,7 @@ html {
   text-align: center;
   font-size: 30px;
   color: #000000;
-  background: linear-gradient(to right, #ff5733, #33d4ff);
+  /* background: linear-gradient(to right, #ff5733, #33d4ff); */
   background-clip: text;
 }
 
@@ -138,6 +140,7 @@ main {
   color: #ffffff;
   width: 350px;
   margin-bottom: 10px;
+  /* box-shadow: inset 5px 5px 10px rgba(255, 255, 255, 0.959), inset -5px -5px 10px rgb(255, 255, 255); */
 }
 
 .container {
@@ -179,7 +182,6 @@ input {
   padding: 10px; /* Add padding for spacing */
   border: 1px solid #999; /* Add a 1px gray border */
   background-color: #f5f5f5; /* Light gray background color */
-  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1); /* Add an inset shadow to create the engraved effect */
   border-radius: 4px; /* Add rounded corners for a softer look */
 } 
 
@@ -285,7 +287,7 @@ input {
 }
 
 footer {
-  background: linear-gradient(to right, #fb0404, #0213ff);
+  background: linear-gradient(to right, #000000, #0213ff);
   /* background-color: #000000; */
   padding: 0;
   width: 100%;

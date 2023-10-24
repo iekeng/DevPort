@@ -10,7 +10,7 @@ const Footer = () => {
         <p>Contact Us</p>
         <div className="contact">
           <span>
-            <i className="fas fa-phone">+1 123-456-789</i> &nbsp;
+            <i className="fas fa-phone">+254 737 336 511</i> &nbsp;
           </span>
           <br />
           <span>
@@ -22,8 +22,8 @@ const Footer = () => {
       </div>
       <div className="footer-section-about">
         <p className="logo-text">DevPort Copyright &copy; 2023</p>
-        <p>
-          Powered by <a href="https://www.github.com">GitHub</a>
+        <p style={{paddingLeft: '20px'}}>
+          Powered by <a href="https://www.github.com" target='_blank'>GitHub</a>
         </p>
       </div>
       <div className="footer-section-social">
