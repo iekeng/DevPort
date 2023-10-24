@@ -11,7 +11,7 @@ import { AccessTokenProvider } from './AccessTokenContext';
 import { Link } from 'react-router-dom';
 
 const PortfolioPage = () => {
-    const [activeSection, setActiveSection] = useState('Education');
+    const [activeSection, setActiveSection] = useState('PersonalDetails');
     const userId = localStorage.getItem('userId');
 
     const handleSectionChange = (nextSection) => {

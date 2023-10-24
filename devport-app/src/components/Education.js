@@ -77,6 +77,7 @@ const Education = ({ userId, onSave }) => {
     };
 
     return (
+        <div>
         <main>
             <form id="education-form" onSubmit={handleSaveEducationDetails}>
                 <section id="education-details">
@@ -113,7 +114,7 @@ const Education = ({ userId, onSave }) => {
                 </section>
                 <button type="submit" className='LSbutton' >Save</button>
             
-            <section id="education-list" className="content-container">
+            <section id="education-list" >
                 <section>
                 <div className="content-container">
                     <div className="content">
@@ -193,12 +194,17 @@ const Education = ({ userId, onSave }) => {
                     </div>
                 </div>
                 </section>
-                {!isAdding && (
-                    <button type="button" id='add-button' className='LSbutton' onClick={addAnotherForm}>+</button>
-                )}
+                
             </section>
             </form>
         </main>
+        {!isAdding && (
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+                    <button type="button" id='add-button' className='LSbutton' onClick={addAnotherForm}>+</button>
+                  </div>
+                  
+                )}
+        </div>
     );
 };
 

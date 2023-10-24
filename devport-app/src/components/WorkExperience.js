@@ -67,6 +67,7 @@ const Work = ({ userId, onSave }) => {
     };
 
     return (
+        <div>
         <main>
             <section id="workexperience-details">
                 <div className="content-container">
@@ -229,13 +230,15 @@ const Work = ({ userId, onSave }) => {
                         </div>
                     </div>
                 </section>
-                {!isAdding && (
-                    <button type="button" id='add-button' className='LSbutton' onClick={addAnotherForm}>
-                        +
-                    </button>
-                )}
             </section>
         </main>
+         {!isAdding && (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+            <button type="button" id='add-button' className='LSbutton' onClick={addAnotherForm}>+</button>
+          </div>
+          
+        )}
+        </div>
     );
 };
 

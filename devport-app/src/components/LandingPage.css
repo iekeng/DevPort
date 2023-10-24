@@ -79,10 +79,10 @@
    width: 100%;
    border-radius: 0px;
    box-shadow: 5px 5px 5px black;
-   /* background: linear-gradient(to right, #fb0404, #0213ff); */
-   /* background: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(129, 126, 126)); */
+   /* background: linear-gradient(to right, #fb0404, #0213ff);
+   background: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(129, 126, 126));
    background-size: cover;
-   background-position: center
+   background-position: center */
  }
  
  #Valp-h1 {
@@ -153,6 +153,10 @@
  }
  
  /* Media queries */
+ @media screen and (max-width: 1440px) and (min-height: 900px) {
+  
+ }
+
  @media screen and (max-width: 1200px) {
    #Valp-Curr {
      grid-template-columns: 100%;
