@@ -22,7 +22,7 @@ const Education = ({ userId, onSave }) => {
                 console.error('Access token not found in localStorage');
                 return;
             }
-
+            
             const userId = localStorage.getItem('userId');
             if (!userId){
                 console.error('User ID not found in localStorage');

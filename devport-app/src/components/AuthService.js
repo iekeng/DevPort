@@ -29,8 +29,7 @@ class AuthService {
                 Accept: "application/json",
             }
         });
-        console.log("response", response);
-        
+        console.log("response", response);    
     }
         catch (error) {
             console.error("Error signing up with Github:", error);

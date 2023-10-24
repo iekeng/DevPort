@@ -23,7 +23,7 @@ const Footer = () => {
       <div className="footer-section-about">
         <p className="logo-text">DevPort Copyright &copy; 2023</p>
         <p style={{paddingLeft: '20px'}}>
-          Powered by <a href="https://www.github.com" target='_blank'>GitHub</a>
+          Powered by <a href="https://www.github.com" target="_blank">GitHub</a>
         </p>
       </div>
       <div className="footer-section-social">
