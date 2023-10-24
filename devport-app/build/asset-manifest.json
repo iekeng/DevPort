@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.d4dac2bc.css",
-    "main.js": "/static/js/main.f528549c.js",
+    "main.css": "/static/css/main.782ca7a9.css",
+    "main.js": "/static/js/main.b4d2a61c.js",
     "static/js/651.b9eedae7.chunk.js": "/static/js/651.b9eedae7.chunk.js",
     "static/media/React_Logo.png": "/static/media/React_Logo.fb59dfc6bb1bac6b0ad0.png",
     "static/media/Background1.jpeg": "/static/media/Background1.6c301b8ac1ca480ff6a9.jpeg",
@@ -9,12 +9,12 @@
     "static/media/Nodejs_Logo.png": "/static/media/Nodejs_Logo.cd935f45c8393cb11f8c.png",
     "static/media/DigitalOcean-Logo.png": "/static/media/DigitalOcean-Logo.37e33ad315b94c8d1eae.png",
     "index.html": "/index.html",
-    "main.d4dac2bc.css.map": "/static/css/main.d4dac2bc.css.map",
-    "main.f528549c.js.map": "/static/js/main.f528549c.js.map",
+    "main.782ca7a9.css.map": "/static/css/main.782ca7a9.css.map",
+    "main.b4d2a61c.js.map": "/static/js/main.b4d2a61c.js.map",
     "651.b9eedae7.chunk.js.map": "/static/js/651.b9eedae7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d4dac2bc.css",
-    "static/js/main.f528549c.js"
+    "static/css/main.782ca7a9.css",
+    "static/js/main.b4d2a61c.js"
   ]
 }
