@@ -1,39 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DevPort_Logo from '../DevPort Logo.png';
-import authService from './AuthService';
+// import authService from './AuthService';
 import GitHubLogo from '../GitHub Logo.png';
 
 const SignUp = () => {
-    const [oauthState, setOauthState] = useState(null);
-    const navigate = useNavigate();
+    // const [oauthState, setOauthState] = useState(null);
+    // const navigate = useNavigate();
 
-    const authorizeGitHubSignup = async () => {
-        try {
-        // Generate a random state for security
-        const state = Math.random().toString(36).substring(7);
-        setOauthState(state);
-    
+    const authorizeGitHubSignup = () => {
         // Redirect the user to the GitHub authorization URL
-        const githubAuthUrl = `http://165.227.108.97/oauth`;
-        window.location.href = githubAuthUrl;
-
-        // After the GitHub OAuth process is complete, you can sign up the user
-        // and store their access token using authService
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get('code');
-
-        if (code) {
-            const response = await authService.signUpWithGitHub(code);
-            if (response.access_token) {
-                authService.saveToken(response.access_token);
-            }
-            console.log('Redirecting to /PortfolioPage');
-            navigate('/PortfolioPage');
-        }
-        } catch (error) {
-            console.error('Error authorizing with GitHub:', error);
-        }
+        window.location.href = 'http://165.227.108.97/oauth';
     };
 
     return (

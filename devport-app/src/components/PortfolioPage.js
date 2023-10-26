@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DevPort_Logo from '../DevPort Logo.png';
 import Education from './Education';
 import Skills from './Skills';
@@ -8,42 +8,62 @@ import Projects from './Projects';
 import GenerateCVButton from './GenerateCVButton';
 import ProfileDisplay from './ProfileDisplay';
 import { AccessTokenProvider } from './AccessTokenContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const PortfolioPage = () => {
     const [activeSection, setActiveSection] = useState('PersonalDetails');
     const userId = localStorage.getItem('userId');
+    const navigate = useNavigate();
+    const client_Id = process.env.REACT_APP_GITHUB_CLIENT_ID;
+    const client_Secret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
+
 
     const handleSectionChange = (nextSection) => {
         setActiveSection(nextSection);
     };
+    
+    useEffect(() => {
+        // Check if there's a GitHub OAuth code in the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
 
-    // const getAccessToken = async () => {
-    //     const code = window.location.search.split('code=')[1];
-    //     const response = await axios.post("https://github.com/login/oauth/access_token", {
-    //         client_id: "829a74c5da72aa7b820c",
-    //         client_secret: "dee0a345dbb4d993fefbeacf7c5372b15173b083",
-    //         code: code,
-    // }, {
-    //     headers: {
-    //         "Accept": "application/json"
-    //     }
-    // }) 
-    // if (response) {
-    //     if (response.status !== 200) {
-    //         console.log(response.stausText);
-    //         // res.status(500).send("Error excahnging code for token");
-    //         return;
-    //     }
-    //     const accessToken = response.data.access_token;
-    //     console.log("accessToken", accessToken);
+        if (code) {
+            // Call your function to exchange the code for an access token
+            getAccessToken(code);
+        }
+    }, []); // Empty dependency array ensures this effect runs only once on component mount
 
-    //     // res.json({token: accessToken});
-    // }
-    // }
+    const getAccessToken = async (code) => {
+        try {
+            const response = await axios.post("https://github.com/login/oauth/access_token", {
+                params: {
+                    client_id: client_Id,
+                    client_secret: client_Secret,
+                    code: code,
+                },
+            }, {
+                headers: {
+                    "Accept": "application/json"
+                }
+            });
 
-    // getAccessToken();
+            if (response.status === 200) {
+                // Access token received successfully
+                const accessToken = response.data.access_token;
+                console.log("Access Token:", accessToken);
+
+                // Store the access token in localStorage
+                localStorage.setItem('githubAccessToken', accessToken);
+            }
+        } catch (error) {
+            console.error('Error exchanging code for token', error);
+        } 
+        // finally {
+        //     // Redirect the user to the desired section or page
+        //     navigate('/PortfolioPage'); // Change this to the appropriate route
+        // }
+    };
 
     const renderSection = () => {
         switch (activeSection) {
