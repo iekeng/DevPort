@@ -13,13 +13,13 @@ const Projects = ({ userId }) => {
 
     const fetchUserProjectDetails = async () => {
         // Get access token from localStorage
-        const access_token = localStorage.getItem('access_token');
+        const accessToken = localStorage.getItem('accessToken');
         try {
 
             const userReposUrl = 'https://api.github.com/user/repos';
             const userReposResponse = await axios.get(userReposUrl, {
                 headers: {
-                    Authorization: `Bearer ${access_token}`,
+                    Authorization: `Bearer ${accessToken}`,
                 },
             });
 

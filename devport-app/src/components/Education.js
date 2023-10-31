@@ -16,13 +16,7 @@ const Education = ({ userId, onSave }) => {
 
     const saveEducationDetails = async (data) => {
         console.log('userId', userId);
-        try {
-            const access_token = localStorage.getItem('access_token');
-            if (!access_token) {
-                console.error('Access token not found in localStorage');
-                return;
-            }
-            
+        try {            
             const userId = localStorage.getItem('userId');
             if (!userId){
                 console.error('User ID not found in localStorage');

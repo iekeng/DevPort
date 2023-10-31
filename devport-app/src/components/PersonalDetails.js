@@ -21,7 +21,14 @@ const PersonalDetails = ({ onSave }) => {
 
     const fetchPersonalDetailsFromGitHub = async () => {
         // Get access token from localStorage
-        const access_token = localStorage.getItem('access_token');
+        const accessToken = localStorage.getItem('accessToken');
+    
+        if (accessToken !== null) {
+        // Use the access_token here
+        console.log('Access token:', accessToken);
+        } else {
+        console.log('Access token not found in localStorage.');
+        }
 
         try {
             // Fetch personal details from GitHub API
@@ -29,7 +36,7 @@ const PersonalDetails = ({ onSave }) => {
 
             const response = await axios.get(userUrl, {
                 headers: {
-                    Authorization: `Bearer ${access_token}`,
+                    Authorization: `Bearer ${accessToken}`,
                 },
             });
 
@@ -80,7 +87,7 @@ const PersonalDetails = ({ onSave }) => {
                     setIsEditing(false); // Turn off editing mode
                 } else {
                     console.error('Failed to update personal details');
-                }
+                } onSave('Education');
             })
             .catch((error) =>{
                 console.error('Error updating personal details', error);

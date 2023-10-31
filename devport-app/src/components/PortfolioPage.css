@@ -1,7 +1,6 @@
 html {
     scroll-behavior: smooth;
     height: 100%;
-
 }
 
 .header {
@@ -280,6 +279,20 @@ input {
 
 #add-button:hover {
   background-color: #45a049;
+}
+
+.skills-list-edit {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two elements per line */
+  gap: 10px; /* Adjust the gap as needed */
+}
+
+.skills-list-view {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two elements per line */
+  gap: 10px; /* Adjust the gap as needed */
 }
 
 #generate-cv-button:hover {

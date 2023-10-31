@@ -1,21 +1,22 @@
-import { createContext, useContext, useState } from 'react';
+// AccessTokenContext.js
+import React, { createContext, useContext, useState } from 'react';
 
-const AccessTokenContext = createContext();
-
-export const useAccess_token = () => {
-  return useContext(AccessTokenContext);
-};
+const AccessTokenContext = createContext(null);
 
 export const AccessTokenProvider = ({ children }) => {
-  const [access_token, setAccess_token] = useState('');
-
-  const updateAccess_token = (token) => {
-    setAccess_token(token);
-  };
+  const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || null);
 
   return (
-    <AccessTokenContext.Provider value={{ access_token, updateAccess_token }}>
+    <AccessTokenContext.Provider value={{ accessToken, setAccessToken }}>
       {children}
     </AccessTokenContext.Provider>
   );
+};
+
+export const useAccessToken = () => {
+  const context = useContext(AccessTokenContext);
+  if (context === undefined) {
+    throw new Error('useAccessToken must be used within an AccessTokenProvider');
+  }
+  return context;
 };

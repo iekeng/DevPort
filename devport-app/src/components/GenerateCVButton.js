@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
-const GenerateCVButton = ({ userId }) => {
+const GenerateCVButton = () => {
+  const userId = localStorage.getItem('userId');
 
   const generateCVApiUrl = `http://165.227.108.97/generate-cv/${userId}`;
 

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Work = ({ userId, onSave }) => {
+const Work = ({ onSave }) => {
+    const userId = localStorage.getItem('userId');
     const [isHidden, setIsHidden] = useState(true);
     const [formData, setFormData] = useState({
         company: '',
@@ -19,7 +20,14 @@ const Work = ({ userId, onSave }) => {
     };
 
     const saveWorkDetails = async (data) => {
+        const splitAchievements = data.achievements.split('\n').map(item => item.trim());
         try {
+            const postData = {
+                ...data,
+                achievements: splitAchievements, // Update the achievements field
+                userId: userId,
+              };
+
             data.userId = userId;
             const response = await axios.post(`http://165.227.108.97/experience/${userId}`, data, {});
             
@@ -40,23 +48,21 @@ const Work = ({ userId, onSave }) => {
     };
 
     const handleChange = (event) => {
-        console.log('Event target:', event.target);
         const { name, value } = event.target;
     
-        if (name === 'achievements' && event.target.tagName === 'TEXTAREA') {
-            // Handle achievements as a list by splitting the value into an array
-            const achievements = value.split('\n').map(item => item.trim());
-            setFormData({
-                ...formData,
-                [name]: achievements,
-            });
-        } else {
-            setFormData({
-                ...formData,
-                [name]: value,
-            });
-        }
-    };    
+        // if (name === 'achievements') {
+        //   // Handle achievements as an array
+        //   const achievements = value.split('\n').map(item => item.trim());
+        //   setFormData({
+        //     ...formData,
+        //     [name]: achievements,
+        //   });
+        // } else {
+          setFormData({
+            ...formData,
+            [name]: value,
+          });
+      };   
 
     const addAnotherForm = () => {
         setIsAdding(true);
@@ -125,7 +131,7 @@ const Work = ({ userId, onSave }) => {
                                     className="nav-content"
                                     name="achievements"
                                     placeholder='- Enter your achievements in a list format...'
-                                    value={formData.achievements.join('\n')}
+                                    value={formData.achievements}
                                     onChange={handleChange}
                                 />
                             </div>
