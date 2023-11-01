@@ -45,8 +45,7 @@ html {
 }
 
 #profilepic {
-    max-width: 30px;
-    height: 30px;
+    /* height: 30px; */
     margin-right: 10px;
     cursor: pointer;
     margin-top: 10px;
@@ -61,14 +60,14 @@ html {
 
 #profilepic,
 #profilename {
+    max-width: 30px;
     display: flex;
-     /* Display items vertically */
-    align-items: flex-end; /* Align items to the right */
+    align-items: flex-end;
 }
 
 #profilep {
     font-size: 12px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     margin-right: 10px;
     font-style: italic;
     color: #ffffff;
@@ -247,7 +246,7 @@ input {
     box-shadow: 5px 5px 5px black;
   }
   
-  .LSbutton[type="submit"]:hover {
+  .LSbutton:hover {
     background-color: #45a049;
   }
 
@@ -401,7 +400,7 @@ root {
   }
   
   .LSbutton {
-    width: 300px;
+    width: 100px;
   }
 }
 

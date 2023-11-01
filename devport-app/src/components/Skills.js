@@ -4,7 +4,6 @@ import axios from 'axios';
 const Skills = ({ onSave }) => {
   const [skills, setSkills] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
-  // Get access token from localStorage
   const accessToken = localStorage.getItem('accessToken');
 
   useEffect(() => {
@@ -15,7 +14,6 @@ const Skills = ({ onSave }) => {
 
   const fetchSkillsFromGitHubRepos = async () => {
     try {
-      // Fetch the user's repositories
       const userReposUrl = 'https://api.github.com/user/repos';
       const userReposResponse = await axios.get(userReposUrl, {
         headers: {
@@ -26,24 +24,30 @@ const Skills = ({ onSave }) => {
       if (userReposResponse.status === 200) {
         const userRepos = userReposResponse.data;
         const uniqueLanguages = new Set();
+        const fetchPromises = [];
 
         for (const repo of userRepos) {
           const languagesUrl = repo.languages_url;
+          fetchPromises.push(
+            axios.get(languagesUrl, {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            })
+          );
+        }
 
-          // Fetch the languages for each repository
-          const repoLanguagesResponse = await axios.get(languagesUrl, {
-            headers: {
-              Authorization: accessToken,
-            },
-          });
+        // Fetch languages for all repositories in parallel
+        const repoLanguagesResponses = await Promise.all(fetchPromises);
 
-          if (repoLanguagesResponse.status === 200) {
-            const repoLanguages = Object.keys(repoLanguagesResponse.data);
+        for (const response of repoLanguagesResponses) {
+          if (response.status === 200) {
+            const repoLanguages = Object.keys(response.data);
             repoLanguages.forEach((language) => uniqueLanguages.add(language));
           }
         }
 
-        setSkills(Array.from(uniqueLanguages)); // Convert the Set back to an array
+        setSkills(Array.from(uniqueLanguages));
       }
     } catch (error) {
       console.error('Error fetching skills from GitHub repositories', error);
@@ -52,13 +56,13 @@ const Skills = ({ onSave }) => {
 
   const saveLanguagesToDB = async () => {
     try {
-      const userId = localStorage.getItem('user_id');
-      const response = await axios.post(`http://165.227.108.97/skills/${userId}`, {
-        skills: skills, // Pass the skills array to the server
+      const userId = localStorage.getItem('userId');
+      const response = await axios.post(`http://165.227.108.97/skill/${userId}`, {
+        skills: skills,
       });
-      if (response.status === 200) {
+      if (response.status === 201) {
         console.log('Skills saved to DB');
-        onSave('WorkExperience'); // Trigger the next step after saving
+        onSave('WorkExperience');
       }
     } catch (error) {
       console.error('Error saving skills to DB', error);
@@ -70,56 +74,52 @@ const Skills = ({ onSave }) => {
   };
 
   const handleSaveClick = () => {
-    setIsEditing(false); // Save changes and exit edit mode
-    saveLanguagesToDB(); // Call the function to save skills to the DB
+    setIsEditing(false);
+    saveLanguagesToDB();
   };
 
   return (
     <main>
-  <section id="skills-details" style={{ display: 'block', margin: '0 auto' }}>
-    <div>
+      <section id="skills-details" style={{ display: 'block', margin: '0 auto' }}>
+        <div>
+          {isEditing ? (
+            <ul className="skills-list-edit">
+              {skills.map((skill, index) => (
+                <li key={index} className="nav-content" style={{ width: '100px' }}>
+                  <input
+                    type="text"
+                    style={{ width: '80px', background: 'blue', border: '0', color: 'white', textAlign: 'center' }}
+                    value={skill}
+                    onChange={(e) => {
+                      const updatedSkills = [...skills];
+                      updatedSkills[index] = e.target.value;
+                      setSkills(updatedSkills);
+                    }}
+                  />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <ul className="skills-list-view">
+              {skills.map((skill, index) => (
+                <li key={index} className="nav-content" style={{ width: '100px' }}>
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </section>
       {isEditing ? (
-        // Edit mode
-        <ul className="skills-list-edit">
-          {skills.map((skill, index) => (
-            <li key={index} className="nav-content" style={{width: '100px'}}>
-              <input
-                type="text"
-                style={{width: '80px', background: 'blue', border: '0', color: 'white', textAlign: 'center'}}
-                value={skill}
-                onChange={(e) => {
-                  // Update the skill in the state when editing
-                  const updatedSkills = [...skills];
-                  updatedSkills[index] = e.target.value;
-                  setSkills(updatedSkills);
-                }}
-              />
-            </li>
-          ))}
-        </ul>
+        <button type="submit" className="LSbutton" onClick={handleSaveClick} style={{ display: 'block', margin: 'auto' }}>
+          Save
+        </button>
       ) : (
-        // View mode
-        <ul className="skills-list-view">
-          {skills.map((skill, index) => (
-            <li key={index} className="nav-content" style={{width: '100px'}}>
-              {skill}
-            </li>
-          ))}
-        </ul>
+        <button type="button" className="LSbutton" onClick={handleEditClick} style={{ display: 'block', margin: 'auto' }}>
+          Edit
+        </button>
       )}
-    </div>
-  </section>
-  {isEditing ? (
-    <button type="submit" className="LSbutton" onClick={handleSaveClick}  style={{ display: 'block', margin: 'auto' }}>
-      Save
-    </button>
-  ) : (
-    <button type="button" className="LSbutton" onClick={handleEditClick}  style={{ display: 'block', margin: 'auto' }}>
-      Edit
-    </button>
-  )}
-</main>
-
+    </main>
   );
 };
 

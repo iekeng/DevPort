@@ -11,17 +11,17 @@ const ProfileDisplay = () => {
 
     const fetchUserProfile = async () => {
         try {
-            const access_token = localStorage.getItem('access_token');
-            if (access_token) {
-                const response = await axios.get('http://http://165.227.108.97/api/user/profile', {
+            const accessToken = localStorage.getItem('accessToken');
+            if (accessToken) {
+                const response = await axios.get('https://api.github.com/user', {
                     headers: {
-                        'Authorization': `Bearer ${access_token}`,
+                        'Authorization': `Bearer ${accessToken}`,
                     },
                 });
 
                 if (response.status === 200) {
-                    const { firstname, lastname, avatar_url } = response.data;
-                    setUserProfile({ firstname, lastname, avatar_url });
+                    const { login, avatar_url, name } = response.data;
+                    setUserProfile({ login, avatar_url, name });
                 }
             }
 
@@ -40,10 +40,10 @@ const ProfileDisplay = () => {
                         src={userProfile.avatar_url}
                         alt="User Avatar"
                         id='profilepic'
-                        style={{ width: '100px', height: '100px', borderRadius: '50%', marginBottom: '10px' }}
+                        style={{ width: '80%', height: '50%', borderRadius: '50%', marginTop: '15px' }}
                     />
-                    <p style={{ fontSize: '13px', fontStyle: 'italic', color: 'white' }} id='profilename'>
-                        {userProfile.firstname} {userProfile.lastname}
+                    <p id='profilename' style={{ fontSize: '13px', fontStyle: 'italic', color: 'white' }}>
+                        {userProfile.name || userProfile.login}
                     </p>
                 </>
             )}

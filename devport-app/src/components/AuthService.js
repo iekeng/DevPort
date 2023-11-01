@@ -8,8 +8,8 @@ class AuthService {
                 githubToken,
             });
 
-            if (response.data.access_token) {
-                this.saveTokenAndUserId(response.data.access_token, response.data.userId);
+            if (response.data.accessToken) {
+                this.saveTokenAndUserId(response.data.accessToken, response.data.userId);
             }
 
             return response.data;
@@ -34,8 +34,8 @@ class AuthService {
             );
     
             // Check if the response contains an access_token
-            if (response.data.access_token) {
-                return response.data.access_token;
+            if (response.data.accessToken) {
+                return response.data.accessToken;
             } else {
                 throw new Error("Access token not found in the response.");
             }
@@ -45,18 +45,18 @@ class AuthService {
         }
     }
 
-    saveTokenAndUserId(token, userId) {
-        localStorage.setItem("access_token", token);
+    saveTokenAndUserId(accessToken, userId) {
+        localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("userId", userId);
     }
 
     logout() {
-        localStorage.removeItem("access_token");
+        localStorage.removeItem("accessToken");
         localStorage.removeItem("userId");
     }
 
     isAuthenticated() {
-        return localStorage.getItem("access_token") !== null;
+        return localStorage.getItem("accessToken") !== null;
     }
 }
 

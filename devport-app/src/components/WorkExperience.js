@@ -20,13 +20,17 @@ const Work = ({ onSave }) => {
     };
 
     const saveWorkDetails = async (data) => {
-        const splitAchievements = data.achievements.split('\n').map(item => item.trim());
+        // Ensure that data.achievements is an array
+        const splitAchievements = Array.isArray(data.achievements)
+            ? data.achievements
+            : data.achievements.split('\n').map(item => item.trim());
+    
         try {
             const postData = {
                 ...data,
                 achievements: splitAchievements, // Update the achievements field
                 userId: userId,
-              };
+            };
 
             data.userId = userId;
             const response = await axios.post(`http://165.227.108.97/experience/${userId}`, data, {});
@@ -50,19 +54,19 @@ const Work = ({ onSave }) => {
     const handleChange = (event) => {
         const { name, value } = event.target;
     
-        // if (name === 'achievements') {
-        //   // Handle achievements as an array
-        //   const achievements = value.split('\n').map(item => item.trim());
-        //   setFormData({
-        //     ...formData,
-        //     [name]: achievements,
-        //   });
-        // } else {
-          setFormData({
-            ...formData,
-            [name]: value,
-          });
-      };   
+        if (name === 'achievements') {
+            // Handle achievements as a string (text area input)
+            setFormData({
+                ...formData,
+                [name]: value,
+            });
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value,
+            });
+        };
+    };  
 
     const addAnotherForm = () => {
         setIsAdding(true);
