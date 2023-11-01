@@ -56,15 +56,16 @@ const Projects = ({ onSave }) => {
 
   const saveProjectDetails = async () => {
     try {
-      const userId = localStorage.getItem('userId');
-      const projectData = {
-        projectName: selectedProject.name,
-        repository: selectedProject.html_url,
-        liveURL: liveUrl,
-        description: selectedProject.description,
+        const userId = localStorage.getItem('userId');
+        console.log('UserId:', userId);
+            const projectData = {
+                projectName: selectedProject.name,
+                repository: selectedProject.html_url,
+                liveURL: liveUrl,
+                description: selectedProject.description,
       };
 
-      const response = await axios.post(`https://165.227.108.97/project/${userId}`, projectData);
+      const response = await axios.put(`https://165.227.108.97/project/${userId}`, projectData);
 
       if (response.status === 201) {
         console.log('Project details saved successfully');

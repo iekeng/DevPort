@@ -6,7 +6,6 @@ import Footer from './components/Footer';
 import PortfolioPage from './components/PortfolioPage';
 import './components/PortfolioPage.css';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import { AccessTokenProvider } from './components/AccessTokenContext';
 
 function App() {
   return (
@@ -16,7 +15,7 @@ function App() {
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/PortfolioPage" element={<PortfolioPage />} />
     </Routes>
-    {/* <Footer /> */}
+    <Footer />
   </Router>
   );
 }
