@@ -13,7 +13,7 @@ const Projects = ({ onSave }) => {
 
   const fetchUserProjectDetails = async () => {
     // Get access token from localStorage
-    const accessToken = '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';
+    const accessToken = localStorage.getItem('accessToken');
     try {
       const userReposUrl = 'https://api.github.com/user/repos';
       const userReposResponse = await axios.get(userReposUrl, {
