@@ -45,6 +45,7 @@ const Education = ({ userId, onSave }) => {
         setEducationDetails([...educationDetails, formData]); // Save the current education details
         setFormData({
             institution: '',
+            degree: '',
             course: '',
             startDate: '',
             endDate: '',
@@ -82,13 +83,13 @@ const Education = ({ userId, onSave }) => {
                                 <input type="text" id="institution-input" className="nav-content"  name="institution" value={formData.institution} onChange={handleInputChange} />
                             </div>
                             <div className="label-input-pair">
+                                <label htmlFor="degree-input" className="label">Degree</label>
+                                <input type="text" id="degree-input" className="nav-content" name="degree" value={formData.degree} onChange={handleInputChange} />
+                            </div>
+                            <div className="label-input-pair">
                                 <label htmlFor="course-input" className="label">Course</label>
                                 <input type="text" id="course-input" className="nav-content" name="course" value={formData.course} onChange={handleInputChange} />
                             </div>
-                            {/* <div className="label-input-pair">
-                                <label htmlFor="degree-input" className="label">Degree</label>
-                                <input type="text" id="degree-input" className="nav-content" name="degree" value={formData.degree} onChange={handleInputChange} />
-                            </div> */}
                             <div className="dates">
                                 <div className="label-input-pair">
                                     <label htmlFor="startDate-input" className="label">Start Date</label>

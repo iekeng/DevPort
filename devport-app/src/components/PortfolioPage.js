@@ -7,14 +7,10 @@ import PersonalDetails from './PersonalDetails';
 import Projects from './Projects';
 import GenerateCVButton from './GenerateCVButton';
 import ProfileDisplay from './ProfileDisplay';
-import { AccessTokenProvider } from './AccessTokenContext';
-import AuthComponent from './AuthComponent';
 import { Link } from 'react-router-dom';
 
 const PortfolioPage = () => {
   const [activeSection, setActiveSection] = useState('PersonalDetails');
-  const [accessToken, setAccessToken] = useState(localStorage.getItem('accessTtoken'));
-  const [userId, setUserId] = useState(localStorage.getItem('user_id'));
 
   const handleSectionChange = (nextSection) => {
     setActiveSection(nextSection);
@@ -23,17 +19,17 @@ const PortfolioPage = () => {
   const renderSection = () => {
     switch (activeSection) {
         case 'PersonalDetails':
-            return <PersonalDetails onSave={handleSectionChange} access_token={accessToken} />;
+            return <PersonalDetails onSave={handleSectionChange} />;
         case 'Education':
-            return <Education userId={userId} onSave={handleSectionChange} access_token={accessToken} />;
+            return <Education onSave={handleSectionChange} />;
         case 'Skills':
-            return <Skills userId={userId} onSave={handleSectionChange} access_token={accessToken} />;
+            return <Skills onSave={handleSectionChange} />;
         case 'WorkExperience':
-            return <WorkExperience userId={userId} onSave={handleSectionChange} access_token={accessToken} />;
+            return <WorkExperience onSave={handleSectionChange} />;
         case 'Projects':
-            return <Projects userId={userId} onSave={handleSectionChange} access_token={accessToken} />;
+            return <Projects onSave={handleSectionChange} />;
         case 'GenerateCVButton':
-            return <GenerateCVButton CV userId={userId} onSave={handleSectionChange} access_token={accessToken} />;
+            return <GenerateCVButton onSave={handleSectionChange} />;
         default:
             return null;
     }

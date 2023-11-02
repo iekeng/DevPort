@@ -55,19 +55,25 @@ const Projects = ({ onSave }) => {
   };
 
   const saveProjectDetails = async () => {
+    console.log('saveProjectDetails function called');
     try {
         const userId = localStorage.getItem('userId');
         console.log('UserId:', userId);
-            const projectData = {
-                projectName: selectedProject.name,
-                repository: selectedProject.html_url,
-                liveURL: liveUrl,
-                description: selectedProject.description,
-      };
+        //     const projectData = {
+        //         projectName: selectedProject.name,
+        //         repository: selectedProject.html_url,
+        //         liveURL: liveUrl,
+        //         description: selectedProject.description,
+        //     };
 
-      const response = await axios.put(`https://165.227.108.97/project/${userId}`, projectData);
+      const response = await axios.post(`https://165.227.108.97/project/${userId}`, {
+        projectName: selectedProject.name,
+        repository: selectedProject.html_url,
+        liveURL: liveUrl,
+        description: selectedProject.description,
+    });
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         console.log('Project details saved successfully');
         console.log('Project details saved:', selectedProject);
         onSave('GenerateCVButton');

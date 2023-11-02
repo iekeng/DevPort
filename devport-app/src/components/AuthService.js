@@ -22,8 +22,8 @@ class AuthService {
         try {
             const response = await axios.post("https://github.com/login/oauth/access_token",
                 {
-                    client_id: "1fd118e40106ec604d26",
-                    client_secret: "8d23219c25b42e0077bdff4adb53e7080f7434eb",
+                    client_id: "829a74c5da72aa7b820c",
+                    client_secret: "dee0a345dbb4d993fefbeacf7c5372b15173b083",
                     code: code,
                 },
                 {
