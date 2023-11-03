@@ -7,6 +7,7 @@ import GitHubLogo from '../GitHub Logo.png'
 import DigitalOceanLogo from '../DigitalOcean-Logo.png'
 import NodejsLogo from '../Nodejs_Logo.png'
 import LogInButton from './LogInButton'
+import Footer from './Footer'
 
 const LandingPage = () => {
   
@@ -42,6 +43,7 @@ const LandingPage = () => {
             <img className="logo" src={NodejsLogo} alt="Nodejs Logo" style={{ width: '8%', marginRight: '30px' }} />
             </div>
       </section>
+      <Footer />
     </div>
   )
 }

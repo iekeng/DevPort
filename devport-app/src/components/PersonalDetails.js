@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Footer from './Footer';
 
 const PersonalDetails = ({ onSave }) => {
 
@@ -103,6 +104,7 @@ const PersonalDetails = ({ onSave }) => {
     };
 
     return (
+        <div>
         <main>
             <form id="personal-details-form">
                 <div className="label-input-pair">
@@ -176,6 +178,8 @@ const PersonalDetails = ({ onSave }) => {
                 )}
             </form>
         </main>
+        <Footer />
+        </div>
     );
 };
 

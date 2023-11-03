@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import ESWFooter from './ESWFooter';
 
 const Education = ({ userId, onSave }) => {
     const [formData, setFormData] = useState({
@@ -199,6 +200,7 @@ const Education = ({ userId, onSave }) => {
                   </div>
                   
                 )}
+                <ESWFooter />
         </div>
     );
 };

@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
 const Footer = () => {
+  // const [showFooter, setShowFooter] = useState(false);
+
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
+
+  // const handleScroll = () => {
+  //   const scrollY = window.scrollY;
+  //   const pageHeight = document.body.scrollHeight - window.innerHeight;
+  //   setShowFooter(scrollY >= pageHeight);
+  // };
   
   return (
-    <footer>
+    <footer >
   <div className="footer">
     <div className="footer-content">
       <div className="footer-section-contact">

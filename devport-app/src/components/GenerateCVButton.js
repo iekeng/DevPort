@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import Footer from './Footer';
 
-const GenerateCVButton = () => {
+const GenerateCVButton = ({ onSave }) => {
   const userId = localStorage.getItem('userId');
 
   const generateCVApiUrl = `http://165.227.108.97/generate-cv/${userId}`;
@@ -30,6 +31,7 @@ const GenerateCVButton = () => {
   };
 
   return (
+    <div>
     <button
       id="generate-cv-button"
       type="button"
@@ -39,6 +41,8 @@ const GenerateCVButton = () => {
     >
       Download CV
     </button>
+    <Footer />
+    </div>
   );
 };
 

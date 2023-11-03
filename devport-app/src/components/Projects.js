@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Footer from './Footer';
 
 const Projects = ({ onSave }) => {
   const [projectDetails, setProjectDetails] = useState([]);
@@ -57,34 +58,30 @@ const Projects = ({ onSave }) => {
   const saveProjectDetails = async () => {
     console.log('saveProjectDetails function called');
     try {
-        const userId = localStorage.getItem('userId');
-        console.log('UserId:', userId);
-        //     const projectData = {
-        //         projectName: selectedProject.name,
-        //         repository: selectedProject.html_url,
-        //         liveURL: liveUrl,
-        //         description: selectedProject.description,
-        //     };
+          const userId = localStorage.getItem('userId');
+          console.log('UserId:', userId);
+              const projectData = {
+                  name: selectedProject.name,
+                  repoURL: selectedProject.html_url,
+                  liveURL: liveUrl,
+                  description: selectedProject.description,
+              };
+              console.log('Project data:', projectData);
+              
+          const response = await axios.post(`http://165.227.108.97/project/${userId}`, projectData);
 
-      const response = await axios.post(`https://165.227.108.97/project/${userId}`, {
-        projectName: selectedProject.name,
-        repository: selectedProject.html_url,
-        liveURL: liveUrl,
-        description: selectedProject.description,
-    });
-
-      if (response.status === 200) {
-        console.log('Project details saved successfully');
-        console.log('Project details saved:', selectedProject);
-        onSave('GenerateCVButton');
-        toggleEditMode();
-      } else {
-        console.log('Failed to save project details. Unexpected response status:', response.status);
-      }
-    } catch (error) {
+          if (response.status === 201) {
+            console.log('Project details saved successfully');
+            console.log('Project details saved:', selectedProject);
+            onSave('GenerateCVButton');
+            toggleEditMode();
+          } else {
+            console.log('Failed to save project details. Unexpected response status:', response.status);
+          }
+  } catch (error) {
       console.error('Error saving project details:', error);
     }
-  };
+  }
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -92,16 +89,17 @@ const Projects = ({ onSave }) => {
       ...prevProject,
       [name]: value,
     }));
-  };
+  }  
 
   const handleDescriptionChange = (event) => {
     setSelectedProject((prevProject) => ({
       ...prevProject,
       description: event.target.value,
     }));
-  };
+  }
 
   return (
+    <div>
     <main>
       <section id="project-details" className="center-content">
         <div className="center-content">
@@ -158,6 +156,7 @@ const Projects = ({ onSave }) => {
                       name="description"
                       value={selectedProject.description}
                       onChange={handleDescriptionChange}
+                      // required
                     />
                   </div>
                   <button type="submit" className="LSbutton" onClick={saveProjectDetails} style={{ margin: '10px' }}>
@@ -196,6 +195,8 @@ const Projects = ({ onSave }) => {
 )}
 </section>
 </main>
+<Footer />
+</div>
   );
 };
 

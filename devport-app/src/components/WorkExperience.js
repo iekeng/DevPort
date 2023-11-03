@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import ESWFooter from './ESWFooter';
 
 const Work = ({ onSave }) => {
     const userId = localStorage.getItem('userId');
@@ -248,6 +249,7 @@ const Work = ({ onSave }) => {
           </div>
           
         )}
+        <ESWFooter />
         </div>
     );
 };

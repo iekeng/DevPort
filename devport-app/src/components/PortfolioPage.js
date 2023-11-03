@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DevPortLogo from '../DevPort Logo.png';
 import Education from './Education';
 import Skills from './Skills';
@@ -8,6 +8,7 @@ import Projects from './Projects';
 import GenerateCVButton from './GenerateCVButton';
 import ProfileDisplay from './ProfileDisplay';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const PortfolioPage = () => {
   const [activeSection, setActiveSection] = useState('PersonalDetails');
@@ -15,6 +16,35 @@ const PortfolioPage = () => {
   const handleSectionChange = (nextSection) => {
     setActiveSection(nextSection);
   };
+
+  useEffect(() => {
+    const handleGithubCallback = async () => {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const code = urlParams.get('code');
+
+      if (code) {
+        try {
+          const response = await axios.get(`http://165.227.108.97/callback/${code}`);
+          const accessToken = response.data;
+
+          if (accessToken !=="") {
+            console.log('Access token:', accessToken);
+            // Store the accessToken in localStorage
+            localStorage.setItem('accessToken', accessToken);
+            console.log(localStorage.getItem('accessToken'));
+          }
+
+          // Update the access_token in the parent component's state
+          // setAccessToken(accessToken);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+
+    handleGithubCallback();
+  }, []);
 
   const renderSection = () => {
     switch (activeSection) {

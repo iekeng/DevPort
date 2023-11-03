@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ESWFooter from './ESWFooter';
 
 const Skills = ({ onSave }) => {
   const [skills, setSkills] = useState([]);
@@ -79,7 +80,8 @@ const Skills = ({ onSave }) => {
   };
 
   return (
-    <main>
+    <div>
+    <main style={{marginTop: '450px'}}>
       <section id="skills-details" style={{ display: 'block', margin: '0 auto' }}>
         <div>
           {isEditing ? (
@@ -120,6 +122,8 @@ const Skills = ({ onSave }) => {
         </button>
       )}
     </main>
+    <ESWFooter />
+    </div>
   );
 };
 
