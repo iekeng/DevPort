@@ -38,6 +38,10 @@ html {
   background-clip: text;
 }
 
+#signupbutton {
+  transition: background-color 0.3s ease;
+}
+
 #githublogo {
   max-width: 30px;
   height: 30px;
@@ -79,7 +83,19 @@ button {
   padding: 0; /* Removes any padding */
 }
 
+@keyframes slideInnav {
+  from {
+    transform: translateY(-100%); /* Start position (left) */
+    opacity: 0; /* Start with 0 opacity (invisible) */
+  }
+  to {
+    transform: translateX(0); /* End position (center) */
+    opacity: 1; /* Fully visible */
+  }
+}
+
 nav ul {
+  animation: slideInnav 5s ease;
   list-style: none;
   padding: 0;
   margin-top: 10px; 
@@ -308,6 +324,10 @@ input {
 
 #generate-cv-button:hover {
   background-color: #45a049;
+}
+
+#generate-cv-button {
+  transition: background-color 0.3s ease;
 }
 
 footer {
