@@ -1,0 +1,472 @@
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+.header {
+    background: linear-gradient(to right, #0213ff, #000000);
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 0, 0, 10px, 0;
+    box-shadow: 5px 5px 5px black;
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    display: flex; /* Use flexbox to arrange items */
+    justify-content: space-between; /* Push items to the sides */
+    align-items: center; /* Align items vertically center */
+}
+
+#logo {
+    width: 7%;
+    margin-left: 0px;
+    cursor: pointer;
+    margin-top: px;
+}
+
+#signupsubtitle {
+  margin-top: 0px;
+  text-align: center;
+  font-size: 30px;
+  color: #000000;
+  /* background: linear-gradient(to right, #ff5733, #33d4ff); */
+  background-clip: text;
+}
+
+#signupbutton {
+  transition: background-color 0.3s ease;
+}
+
+#githublogo {
+  max-width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+#profilepic {
+    /* height: 30px; */
+    margin-right: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#profilename {
+    font-size: 15px;
+    margin-top: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#profilepic,
+#profilename {
+    max-width: 30px;
+    display: flex;
+    align-items: flex-end;
+}
+
+#profilep {
+    font-size: 12px;
+    /* margin-top: 10px; */
+    margin-right: 10px;
+    font-style: italic;
+    color: #ffffff;
+}
+
+button {
+  border: none; /* Removes the border */
+  background: none; /* Removes the background color */
+  padding: 0; /* Removes any padding */
+}
+
+@keyframes slideInnav {
+  from {
+    transform: translateY(-100%); /* Start position (left) */
+    opacity: 0; /* Start with 0 opacity (invisible) */
+  }
+  to {
+    transform: translateX(0); /* End position (center) */
+    opacity: 1; /* Fully visible */
+  }
+}
+
+nav ul {
+  animation: slideInnav 5s ease;
+  list-style: none;
+  padding: 0;
+  margin-top: 10px; 
+  display: flex;
+}
+
+nav li {
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.nav-button {
+  
+  font-weight: bold;
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: italic;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.nav-button:hover {
+  text-decoration: underline;
+  color:rgb(0, 0, 0);
+}
+
+.center-content {
+  display: flex;
+  padding-top: 5px;
+  justify-content: center; /* Horizontally center content */
+  align-items: center; /* Vertically center content */
+  height: 480px; 
+  flex-direction: column; /* Stack content vertically */
+  z-index: 99;
+}
+
+@keyframes slideInmain {
+  from {
+    transform: translateY(-100%); /* Start position (left) */
+    opacity: 0; /* Start with 0 opacity (invisible) */
+  }
+  to {
+    transform: translateX(0); /* End position (center) */
+    opacity: 1; /* Fully visible */
+  }
+}
+
+main {
+  animation: slideInmain 3s ease;
+  margin-top: 200px;
+  border: 1px solid #000;
+  box-shadow: 5px 5px 5px black;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  width: 400px;
+}
+
+.nav-content {
+  border: #000000 1px solid;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px black;
+  padding: 5px;
+  background-color: #0213ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  width: 350px;
+  margin-bottom: 10px;
+  /* box-shadow: inset 5px 5px 10px rgba(255, 255, 255, 0.959), inset -5px -5px 10px rgb(255, 255, 255); */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* This will make the container take the full viewport height */
+}
+
+form {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-between;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.label-input-pair {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.label {
+  font-weight: bold;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #999;
+  background-color: #f5f5f5; 
+  border-radius: 4px;
+} 
+
+.content {
+  flex: 1;
+}
+
+.label {
+  font-weight: bold;
+  text-align: left;
+  font-size: 15px;
+}
+
+/* .date-pair {
+    display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-gap: 5px;
+} */
+
+/* .content p, .dates p {
+  margin: 0;
+  margin-bottom: 10px;
+}
+*/
+
+.dates {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+  
+  .input-label {
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    margin-bottom: 3px;
+  }
+  
+  .LSbutton[type="submit"] {
+    padding: 10px 15px;
+    background-color: rgb(5, 51, 255);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 5px 5px black;
+  }
+
+  .LSbutton {
+    padding: 10px 15px;
+    background-color: rgb(5, 51, 255);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 5px 5px black;
+  }
+  
+  .LSbutton:hover {
+    background-color: #45a049;
+  }
+
+  .add-form-buttons {
+    display: flex;
+    flex-direction: column; /* Stack the buttons vertically */
+    align-items: flex-start; /* Align the buttons to the left side */
+    margin-top: 10px; /* Add some spacing from the rest of the form */
+}
+
+.add-form-buttons button {
+    margin-right: 10px; /* Add spacing between the buttons if needed */
+}
+
+#add-button {
+  width: 40px; /* Adjust the size as needed */
+  height: 40px; /* Same value as width to make it circular */
+  border-radius: 50%; /* Set border-radius to 50% for a circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(5, 51, 255);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px black;
+  font-size: 20px; /* Adjust the font size as needed */
+}
+
+#add-button:hover {
+  background-color: #45a049;
+}
+
+.skills-list-edit {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two elements per line */
+  gap: 10px; /* Adjust the gap as needed */
+}
+
+.skills-list-view {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two elements per line */
+  gap: 10px; /* Adjust the gap as needed */
+}
+
+#generate-cv-button:hover {
+  background-color: #45a049;
+}
+
+#generate-cv-button {
+  transition: background-color 0.3s ease;
+}
+
+footer {
+  background: linear-gradient(to right, #000000, #0213ff);
+  padding: 0;
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  color: #ffffff;
+  
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-evenly; /* Create space between columns */
+  align-items: center; /* Center vertically */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* Individual sections within the footer */
+.footer-section {
+  flex: 1; /* Each section takes equal space, creating three columns */
+  padding: 0px; /* Add spacing between columns */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: first baseline;
+  text-align: center;
+  justify-content: center;
+  margin-top: 0;
+}
+
+a {
+  color: #ffffff;
+  
+}
+
+root {
+  --bg-color: white;
+  --text-color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: black;
+    --text-color: white;
+  }
+}
+
+/* body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+} */
+
+/* Extra small devices (phones) */
+@media (max-width: 576px) {
+  .header {
+    height: 60px;
+    padding: 5px 0;
+    flex-direction: column;
+  }
+
+  #signupsubtitle {
+    font-size: 20px;
+  }
+  
+  .LSbutton {
+    width: 200px;
+  }
+}
+
+/* Small devices (tablets) */
+@media (min-width: 577px) and (max-width: 767px) {
+  .header {
+    height: 70px;
+    font-size: 24px;
+  }
+
+  #signupsubtitle {
+    font-size: 26px;
+  }
+  
+  .LSbutton {
+    width: 250px;
+  }
+}
+
+/* Medium devices (landscape tablets and small desktops) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .header {
+    height: 80px;
+  }
+
+  #signupsubtitle {
+    font-size: 28px;
+  }
+  
+  .LSbutton {
+    width: 100px;
+  }
+
+  #signupbutton {
+    width: 200px;
+  }
+
+  #generate-cv-button {
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+#logo {
+   width: 10%;
+  }
+}
+
+/* Large devices (desktops) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  
+}
+
+/* Extra large devices (large desktops) */
+@media (min-width: 1200px) {
+    .header {
+        /* height: 100px;
+        font-size: 32px; */
+    }
+
+    #signupsubtitle {
+        font-size: 34px;
+    }
+
+    .LSbutton {
+        /* width: 350px; */
+    }
+}
