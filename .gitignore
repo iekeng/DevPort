@@ -13,8 +13,7 @@ devport-app/.pnp.js
 # testing
 devport-app/coverage
 
-# production
-devport-app/build
+devport-app/package-lock.json
 
 # environment files
 devport-app/.DS_Store
