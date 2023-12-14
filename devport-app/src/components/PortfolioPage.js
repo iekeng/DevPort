@@ -25,11 +25,11 @@ const PortfolioPage = () => {
 
       if (code) {
         try {
-          const response = await axios.get(`http://165.227.108.97/callback/${code}`);
-          const accessToken = response.data;
+          const response = await axios.get(`http://localhost:4000/callback/${code}`);
+          const accessToken = response.data.token;
 
-          if (accessToken !=="") {
-            console.log('Access token:', accessToken);
+          if (accessToken) {
+            console.log(accessToken);
             // Store the accessToken in localStorage
             localStorage.setItem('accessToken', accessToken);
             console.log(localStorage.getItem('accessToken'));

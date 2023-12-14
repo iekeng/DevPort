@@ -1,4 +1,6 @@
 const express = require('express');
+const cors = require('cors')
+const axios = require('axios')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
@@ -9,10 +11,11 @@ const skillRoutes = require('./routes/skill');
 require('dotenv').config();
 const app = express();
 
+
 const host = process.env.HOST || 'localhost';
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 const authURL = process.env.AUTHURL
-const clientID = process.env.CLIENTID 
+const clientID = process.env.CLIENT_ID
 const clientSecret = process.env.SECRET 
 const oauth = process.env.OAUTH 
 
@@ -27,16 +30,17 @@ app.use('/education', educationRoutes);
 app.use('/experience', experienceRoutes);
 app.use('/project', projectRoutes);
 app.use('/skill', skillRoutes);
+app.use(cors())
 
 app.get('/oauth', (req, res) => {
   res.redirect(`${authURL}`);
 })
 
-app.get("/callback", (req, res) => {
+app.get("/callback/:code", (req, res) => {
   axios.post(`${oauth}`, {
       client_id: `${clientID}`,
       client_secret: `${clientSecret}`,
-      code: req.query.code
+      code: req.params.code
   }, {
       headers: {
           Accept: "application/json"
@@ -44,7 +48,6 @@ app.get("/callback", (req, res) => {
   }).then((result) => {
       console.log(result.data.access_token)
       res.json({token: result.data.access_token});
-      res.send("you are authorized " + result.data.access_token);
   }).catch((err) => {
       console.log(err);
   });

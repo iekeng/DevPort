@@ -5,7 +5,7 @@ import Footer from './Footer';
 const GenerateCVButton = ({ onSave }) => {
   const userId = localStorage.getItem('userId');
 
-  const generateCVApiUrl = `http://165.227.108.97/generate-cv/${userId}`;
+  const generateCVApiUrl = `http://localhost:4000/generate-cv/${userId}`;
 
   const handleGenerateCV = async () => {
     try {

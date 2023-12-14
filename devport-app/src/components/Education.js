@@ -27,7 +27,7 @@ const Education = ({ userId, onSave }) => {
             // Add the userId to the request data
             data.userId = userId;
 
-            const response = await axios.post(`http://165.227.108.97/education/${userId}`, data, {
+            const response = await axios.post(`http://localhost:4000/education/${userId}`, data, {
               
             });
 

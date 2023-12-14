@@ -68,7 +68,7 @@ const Projects = ({ onSave }) => {
               };
               console.log('Project data:', projectData);
               
-          const response = await axios.post(`http://165.227.108.97/project/${userId}`, projectData);
+          const response = await axios.post(`http://localhost:4000/project/${userId}`, projectData);
 
           if (response.status === 201) {
             console.log('Project details saved successfully');

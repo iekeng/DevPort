@@ -58,7 +58,7 @@ const Skills = ({ onSave }) => {
   const saveLanguagesToDB = async () => {
     try {
       const userId = localStorage.getItem('userId');
-      const response = await axios.post(`http://165.227.108.97/skill/${userId}`, {
+      const response = await axios.post(`http:localhost:4000/skill/${userId}`, {
         skills: skills,
       });
       if (response.status === 201) {

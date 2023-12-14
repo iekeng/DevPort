@@ -60,7 +60,7 @@ const PersonalDetails = ({ onSave }) => {
     };
 
     const handleSavePersonalDetails = () => {
-        const updatePersonalDetailsApiUrl = 'http://165.227.108.97/users';
+        const updatePersonalDetailsApiUrl = 'http://localhost:4000/users';
 
         // Prepare the data to send to the API
         const updatedDetails = {

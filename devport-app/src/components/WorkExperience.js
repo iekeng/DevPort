@@ -34,7 +34,7 @@ const Work = ({ onSave }) => {
             };
 
             data.userId = userId;
-            const response = await axios.post(`http://165.227.108.97/experience/${userId}`, data, {});
+            const response = await axios.post(`http://localhost:4000/experience/${userId}`, data, {});
             
             if (response.status === 200) {
                 console.log('Work details saved successfully');
