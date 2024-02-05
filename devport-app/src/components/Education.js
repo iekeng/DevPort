@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
+import InputField from './InputFieldField';
 
 export default function Education({ userId, onSave }) {
     const [formData, setFormData] = useState({
@@ -14,6 +15,10 @@ export default function Education({ userId, onSave }) {
 
     const [educationDetails, setEducationDetails] = useState([]); // To store multiple education details
     const [isAdding, setIsAdding] = useState(false);
+    
+    const institutionRef = useRef()
+    const courseRef = useRef()
+    const locationRef = useRef()
 
     const saveEducationDetails = async (data) => {
         console.log('userId', userId);
@@ -75,15 +80,8 @@ export default function Education({ userId, onSave }) {
     return (
         <Container>
         <Form>
-            <Form.Group controlId="formStep1">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-            />
-            </Form.Group>
+            <InputField name label type placeholder error fieldRef />
+            <InputField />
         </Form>
         </Container>
         // <div>
