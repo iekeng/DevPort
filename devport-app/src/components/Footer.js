@@ -1,66 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { FaGithub, FaGoogle, FaLinkedin } from "react-icons/fa";
+import { Stack } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-const Footer = () => {
-  // const [showFooter, setShowFooter] = useState(false);
+const Footer = ({ fixed }) => {
+  const footerClass = fixed ? 'fixed-bottom' : 'mt-auto';
 
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
-
-  // const handleScroll = () => {
-  //   const scrollY = window.scrollY;
-  //   const pageHeight = document.body.scrollHeight - window.innerHeight;
-  //   setShowFooter(scrollY >= pageHeight);
-  // };
-  
   return (
-    <footer >
-  <div className="footer">
-    <div className="footer-content">
-      <div className="footer-section-contact">
-        <p>Contact Us</p>
-        <div className="contact">
-          <span>
-            <i className="fas fa-phone">+254 737 336 511</i> &nbsp;
-          </span>
-          <br />
-          <span>
-            <i className="fas fa-envelope">
-            <a href="mailto:devport@iomititi.tech">devport@iomititi.tech</a>
-            </i> &nbsp;
-          </span>
+    <footer className={`bg-body-tertiary text-center ${footerClass}`}>
+      <div className="container p-2">
+        <div className="text-center p-2">
+          <Link className="text-body" to="/">DevPort</Link> © 2020 Copyright
+          <FaGithub className='ms-2' />
+          <FaLinkedin className='ms-2' />
+          <FaGoogle className='ms-2'/>
         </div>
       </div>
-      <div className="footer-section-about">
-        <p className="logo-text">DevPort Copyright &copy; 2023</p>
-        <p style={{paddingLeft: '20px'}}>
-          Powered by <a href="https://www.github.com" target="_blank">GitHub</a>
-        </p>
-      </div>
-      <div className="footer-section-social">
-        <p>Follow Us</p>
-        <div className="social-links">
-          {/* <a href="https://www.facebook.com" target="_blank">
-            <i className="fab fa-facebook">@DevPort</i>
-          </a>
-          <a href="https://www.instagram.com" target="_blank">
-            <i className="fab fa-instagram">@DevPort</i>
-          </a> */}
-          <a href="https://www.twitter.com" target="_blank">
-            <i className="fab fa-twitter">@DevPort</i>
-          </a>
-          {/* <a href="https://www.linkedin.com" target="_blank">
-            <i className="fab fa-linkedin">@DevPort</i>
-          </a> */}
-          </div>
-      </div>
-    </div>
-  </div>
-</footer>
-)
+    </footer>
+  );
 }
 
 export default Footer;
