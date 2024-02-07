@@ -4,6 +4,8 @@ import Container from 'react-bootstrap/Container';
 import InputField from './InputField';
 import Form from 'react-bootstrap/Form'
 import Footer from './Footer';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default function Education({title}) {
     // const [formData, setFormData] = useState({
@@ -92,8 +94,14 @@ export default function Education({title}) {
                 <InputField name="degree" label="Degree" placeholder="Degree" fieldRef={degreeRef} />
                 <InputField name="course" label="Course" placeholder="Course" fieldRef={courseRef} />
                 <InputField name="city" label="City" placeholder="City" locationRef={courseRef} />
-                <InputField name="start date" label="Start Date" placeholder="Start Date" type="date" fieldRef={startDateRef} />
-                <InputField name="end date" label="End Date" placeholder="End Date" type="date" fieldRef={endDateRef} />
+                <Row>
+                    <Col>
+                        <InputField name="start date" label="Start Date" placeholder="Start Date" type="date" fieldRef={startDateRef} />
+                    </Col>
+                    <Col>
+                        <InputField name="end date" label="End Date" placeholder="End Date" type="date" fieldRef={endDateRef} />
+                    </Col>
+                </Row>
             </Form>
         </Container>
         </>

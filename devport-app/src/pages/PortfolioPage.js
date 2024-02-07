@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import Education from '../components/Education';
 import { FaPlusSquare as Plus }  from "react-icons/fa";
 import Footer from '../components/Footer';
@@ -75,19 +73,19 @@ const PortfolioPage = () => {
            {step === 3 && [...Array(experienceSectionNum).keys()].map((_, index) => (
              <Experience key={index} />
           ))}
-          {step > 1 ? 
+          {!(step % 2) ? 
           <Button className="ms-2 mb-2" onClick={handleAddSection}>
             <Plus size={20} />
-          </Button> : 
-          step > 2 ?
+          </Button> : <></> }
+          { step > 2 ?
           <Button className="ms-2 mb-2" onClick={() => setExperienceSectionNum(experienceSectionNum + 1)}>
             <Plus size={20} />
           </Button> : <></>}
           <div className="d-flex justify-content-between">
-        {step > 1 && (
-          <Button className="mb-4"  variant="secondary" onClick={handlePrevious}>
-            Previous
-          </Button>
+          {step > 1 && (
+            <Button className="mb-4"  variant="secondary" onClick={handlePrevious}>
+              Previous
+            </Button>
         )}
         {step < 3 ? (
           <Button className="mb-4" variant="primary" onClick={handleNext}>
