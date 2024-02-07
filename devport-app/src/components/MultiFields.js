@@ -4,9 +4,11 @@ import InputField from './InputField';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { FaPlusSquare, FaPlusSquare as Plus } from 'react-icons/fa';
 
 
-const Skills = ({ onSave }) => {
+const MultiFields = ({ name }) => {
+  const [sectionNum, setSectionNum] = useState(1)
   const [skills, setSkills] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const accessToken = localStorage.getItem('accessToken');
@@ -83,6 +85,10 @@ const Skills = ({ onSave }) => {
   //   saveLanguagesToDB();
   // };
 
+  const handleAddSection = () => {
+    setSectionNum(sectionNum + 1);
+  };
+  
   return (
     // <div>
     // <main style={{marginTop: '450px'}}>
@@ -128,17 +134,23 @@ const Skills = ({ onSave }) => {
     // </main>
     // </div>
     <>
-      <h3>Skills</h3>
+    <div className='border mt-2 p-4 mb-4'>
+      {[...Array(sectionNum).keys()].map((_, index) => (
       <Row>
         <Col>
-          <InputField name="skills" label="Skill" type="text" placeholder=". . ." />
+          <InputField name={name} type="text" placeholder=". . ." />
         </Col>
         <Col>
-          <InputField name="skills" label="Skill" type="text" placeholder=". . ." />
+          <InputField name={name}  type="text" placeholder=". . ." />
         </Col>
       </Row>
+       ))}
+      <Button onClick={handleAddSection}>
+        <FaPlusSquare size={15} />
+      </Button>
+      </div>
     </>
   );
 };
 
-export default Skills;
+export default MultiFields;

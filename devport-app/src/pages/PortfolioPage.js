@@ -10,9 +10,11 @@ import Education from '../components/Education';
 import { FaPlusSquare as Plus }  from "react-icons/fa";
 import Footer from '../components/Footer';
 import PersonalDetails from '../components/PersonalDetails';
+import Experience from '../components/Experience';
 
 const PortfolioPage = () => {
   const [sectionNum, setSectionNum] = useState(1);
+  const [experienceSectionNum, setExperienceSectionNum] = useState(1);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({});
   const now = (step / 4) * 100;
@@ -70,18 +72,17 @@ const PortfolioPage = () => {
           { step === 2  && [...Array(sectionNum).keys()].map((_, index) => (
             <Education key={index} />
           ))}
-          {/* {step === 3 && [...Array(sectionNum).keys()].map((_, index) => (
-             <WorkExperience key={index} />
+           {step === 3 && [...Array(experienceSectionNum).keys()].map((_, index) => (
+             <Experience key={index} />
           ))}
-          {step === 3 && [...Array(sectionNum).keys()].map((_, index) => (
-            <Projects key={index} />
-          ))}
-          {step === 4 && [...Array(sectionNum).keys()].map((_, index) => (
-            < key={index} />
-          ))} */}
+          {step > 1 ? 
           <Button className="ms-2 mb-2" onClick={handleAddSection}>
             <Plus size={20} />
-          </Button>
+          </Button> : 
+          step > 2 ?
+          <Button className="ms-2 mb-2" onClick={() => setExperienceSectionNum(experienceSectionNum + 1)}>
+            <Plus size={20} />
+          </Button> : <></>}
           <div className="d-flex justify-content-between">
         {step > 1 && (
           <Button className="mb-4"  variant="secondary" onClick={handlePrevious}>

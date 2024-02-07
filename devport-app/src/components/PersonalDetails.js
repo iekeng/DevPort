@@ -3,6 +3,7 @@ import axios from 'axios';
 import Footer from './Footer';
 import InputField from './InputField';
 import Header from './Header';
+import MultiFields from './MultiFields';
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -130,6 +131,8 @@ return (
         </Col>
       </Row>
     </Form>
+    <h3>Skills:</h3>
+    <MultiFields name="skills" />
   </> 
   );
 };
