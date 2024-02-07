@@ -1,89 +1,102 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
-import InputField from './InputFieldField';
+import InputField from './InputField';
+import Form from 'react-bootstrap/Form'
+import Footer from './Footer';
 
-export default function Education({ userId, onSave }) {
-    const [formData, setFormData] = useState({
-        institution: '',
-        course: '',
-        startDate: '',
-        endDate: '',
-        location: '',
-        userId: userId,
-    });
+export default function Education({title}) {
+    // const [formData, setFormData] = useState({
+    //     institution: '',
+    //     course: '',
+    //     startDate: '',
+    //     endDate: '',
+    //     location: '',
+    //     userId: userId,
+    // });
 
-    const [educationDetails, setEducationDetails] = useState([]); // To store multiple education details
-    const [isAdding, setIsAdding] = useState(false);
-    
+    // const [educationDetails, setEducationDetails] = useState([]); // To store multiple education details
+    // const [isAdding, setIsAdding] = useState(false);
+
     const institutionRef = useRef()
     const courseRef = useRef()
+    const degreeRef = useRef()
     const locationRef = useRef()
+    const startDateRef = useRef()
+    const endDateRef = useRef()
 
-    const saveEducationDetails = async (data) => {
-        console.log('userId', userId);
-        try {            
-            const userId = localStorage.getItem('userId');
-            if (!userId){
-                console.error('User ID not found in localStorage');
-                return;
-            }
+    // const saveEducationDetails = async (data) => {
+    //     try {            
+    //         const userId = localStorage.getItem('userId');
+    //         if (!userId){
+    //             console.error('User ID not found in localStorage');
+    //             return;
+    //         }
 
-            // Add the userId to the request data
-            data.userId = userId;
+    //         // Add the userId to the request data
+    //         data.userId = userId;
 
-            const response = await axios.post(`http://localhost:4000/education/${userId}`, data, {
+    //         const response = await axios.post(`http://localhost:4000/education/${userId}`, data, {
               
-            });
+    //         });
 
-            if (response.status === 201) {
-                console.log('Education details saved successfully');
-            }
-            onSave('Skills');
-        } catch (error) {
-            console.error('Error saving education details', error);
-        }
-    };
+    //         if (response.status === 201) {
+    //             console.log('Education details saved successfully');
+    //         }
+    //         onSave('Skills');
+    //     } catch (error) {
+    //         console.error('Error saving education details', error);
+    //     }
+    // };
 
-    const handleSaveEducationDetails = async (event) => {
-        event.preventDefault();
-        saveEducationDetails(formData);
-        setEducationDetails([...educationDetails, formData]); // Save the current education details
-        setFormData({
-            institution: '',
-            degree: '',
-            course: '',
-            startDate: '',
-            endDate: '',
-            location: '',
-            userId: userId,
-        });
-        setIsAdding(false);
-    };
+    // const handleSaveEducationDetails = async (event) => {
+    //     event.preventDefault();
+    //     saveEducationDetails(formData);
+    //     setEducationDetails([...educationDetails, formData]); // Save the current education details
+    //     setFormData({
+    //         institution: '',
+    //         degree: '',
+    //         course: '',
+    //         startDate: '',
+    //         endDate: '',
+    //         location: '',
+    //         userId: userId,
+    //     });
+    //     setIsAdding(false);
+    // };
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
+    // const handleInputChange = (event) => {
+    //     const { name, value } = event.target;
+    //     setFormData({
+    //         ...formData,
+    //         [name]: value,
+    //     });
+    // };
 
-    const addAnotherForm = () => {
-        setIsAdding(true);
-    };
+    // const addAnotherForm = () => {
+    //     setIsAdding(true);
+    // };
 
-    const cancelAddForm = () => {
-        setIsAdding(false);
-    };
+    // const cancelAddForm = () => {
+    //     setIsAdding(false);
+    // };
 
     return (
+        <>
         <Container>
-        <Form>
-            <InputField name label type placeholder error fieldRef />
-            <InputField />
-        </Form>
+            <div className='fs2 pt-2'>
+                {title && <h1>Education Section</h1>}
+            </div>
+            <Form className="border border-gray-600 p-4 mb-3">
+                <InputField name="institution" label="Institution" placeholder="Institution" fieldRef={institutionRef} />
+                <InputField name="degree" label="Degree" placeholder="Degree" fieldRef={degreeRef} />
+                <InputField name="course" label="Course" placeholder="Course" fieldRef={courseRef} />
+                <InputField name="city" label="City" placeholder="City" locationRef={courseRef} />
+                <InputField name="start date" label="Start Date" placeholder="Start Date" type="date" fieldRef={startDateRef} />
+                <InputField name="end date" label="End Date" placeholder="End Date" type="date" fieldRef={endDateRef} />
+            </Form>
         </Container>
+        </>
         // <div>
         // <main>
         //     <form id="education-form" onSubmit={handleSaveEducationDetails}>

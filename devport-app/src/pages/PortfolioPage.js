@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
-// import Education from './Education';
-import Skills from '../components/Skills';
-import WorkExperience from '../components/WorkExperience';
-import PersonalDetails from '../components/PersonalDetails';
-// import Projects from './Projects';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
+import Education from '../components/Education';
+import { FaPlusSquare as Plus }  from "react-icons/fa";
+import Footer from '../components/Footer';
+import PersonalDetails from '../components/PersonalDetails';
 
 const PortfolioPage = () => {
+  const [sectionNum, setSectionNum] = useState(1);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({});
-  const now = (step/4) * 100;
+  const now = (step / 4) * 100;
+
   const handleNext = () => {
     setStep(step + 1);
   };
@@ -25,13 +26,12 @@ const PortfolioPage = () => {
   };
 
   const handleSectionChange = (nextSection) => {
-    // const { name, value } = event.target;
-    // setFormData({ ...formData, [name]: value });
+    // Logic for handling section change
   };
 
   useEffect(() => {
     const handleGithubCallback = async () => {
-      const queryString = window.location.searchconst;
+      const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       const code = urlParams.get('code');
 
@@ -41,10 +41,7 @@ const PortfolioPage = () => {
           const accessToken = response.data.token;
 
           if (accessToken) {
-            console.log(accessToken);
-            // Store the accessToken in localStorage
             localStorage.setItem('accessToken', accessToken);
-            console.log(localStorage.getItem('accessToken'));
           }
 
           // Update the access_token in the parent component's state
@@ -58,14 +55,51 @@ const PortfolioPage = () => {
     handleGithubCallback();
   }, []);
 
+  const handleAddSection = () => {
+    setSectionNum(sectionNum + 1);
+  };
+
   return (
     <>
-    <Header />
-    <Container>
-      <Form> 
-      <ProgressBar now={now} label={`${Math.trunc(now)}%`}/>
-      </Form>
-    </Container>
+      <Header />
+      <Container>
+          <ProgressBar className="mb-2" now={now} label={`${Math.trunc(now)}%`}/>
+          {step === 1 && [...Array(sectionNum).keys()].map((_, index) => (
+            <PersonalDetails key={index} />
+          ))}
+          { step === 2  && [...Array(sectionNum).keys()].map((_, index) => (
+            <Education key={index} />
+          ))}
+          {/* {step === 3 && [...Array(sectionNum).keys()].map((_, index) => (
+             <WorkExperience key={index} />
+          ))}
+          {step === 3 && [...Array(sectionNum).keys()].map((_, index) => (
+            <Projects key={index} />
+          ))}
+          {step === 4 && [...Array(sectionNum).keys()].map((_, index) => (
+            < key={index} />
+          ))} */}
+          <Button className="ms-2 mb-2" onClick={handleAddSection}>
+            <Plus size={20} />
+          </Button>
+          <div className="d-flex justify-content-between">
+        {step > 1 && (
+          <Button className="mb-4"  variant="secondary" onClick={handlePrevious}>
+            Previous
+          </Button>
+        )}
+        {step < 3 ? (
+          <Button className="mb-4" variant="primary" onClick={handleNext}>
+            Next
+          </Button>
+        ) : (
+          <Button className="mb-4" variant="primary" type="submit">
+            Submit
+          </Button>
+        )}
+      </div>
+      </Container>
+      <Footer />
     </>
   );
 };
