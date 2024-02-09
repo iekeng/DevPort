@@ -46,8 +46,7 @@ app.get("/callback/:code", (req, res) => {
           Accept: "application/json"
       }
   }).then((result) => {
-      console.log(result.data.access_token)
-      res.json({token: result.data.access_token});
+      res.json({"token": result.data.access_token});
   }).catch((err) => {
       console.log(err);
   });

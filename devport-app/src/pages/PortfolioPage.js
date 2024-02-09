@@ -9,6 +9,7 @@ import { FaPlusSquare as Plus }  from "react-icons/fa";
 import Footer from '../components/Footer';
 import PersonalDetails from '../components/PersonalDetails';
 import Experience from '../components/Experience';
+import Spinner from 'react-bootstrap/Spinner'
 
 const PortfolioPage = () => {
   const [sectionNum, setSectionNum] = useState(1);
@@ -38,14 +39,12 @@ const PortfolioPage = () => {
       if (code) {
         try {
           const response = await axios.get(`http://localhost:4000/callback/${code}`);
-          const accessToken = response.data.token;
+          if(response.data.token !== undefined) {
+            const accessToken = response.data.token;
+            localStorage.setItem('accessToken', accessToken)
 
-          if (accessToken) {
-            localStorage.setItem('accessToken', accessToken);
+            console.log('Access Token: ', accessToken);
           }
-
-          // Update the access_token in the parent component's state
-          // setAccessToken(accessToken);
         } catch (error) {
           console.error(error);
         }
@@ -61,7 +60,9 @@ const PortfolioPage = () => {
 
   return (
     <>
-      <Header />
+      <Header loggedIn/>
+      { localStorage.getItem('accessToken') ?
+      <>
       <Container>
           <ProgressBar className="mb-2" now={now} label={`${Math.trunc(now)}%`}/>
           {step === 1 && [...Array(sectionNum).keys()].map((_, index) => (
@@ -86,19 +87,28 @@ const PortfolioPage = () => {
             <Button className="mb-4"  variant="secondary" onClick={handlePrevious}>
               Previous
             </Button>
-        )}
-        {step < 3 ? (
-          <Button className="mb-4" variant="primary" onClick={handleNext}>
-            Next
-          </Button>
-        ) : (
-          <Button className="mb-4" variant="primary" type="submit">
-            Submit
-          </Button>
-        )}
-      </div>
-      </Container>
+          )}
+          {step < 3 ? (
+            <Button className="mb-4" variant="primary" onClick={handleNext}>
+              Next
+            </Button>
+          ) : (
+            <Button className="mb-4" variant="primary" type="submit">
+              Submit
+            </Button>
+          )}
+        </div>
+      </Container> 
       <Footer />
+      </>:
+      <>
+      <div>
+        <Spinner />
+        <Footer fixed />
+      </div>
+      </>
+      }
+      
     </>
   );
 };

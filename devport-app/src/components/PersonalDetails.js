@@ -116,25 +116,26 @@ const PersonalDetails = ({ onSave }) => {
 //     handleSavePersonalDetails();
 // };
 
-return (
-  <>
-    <Form className="border border-gray-600 p-4 mb-3">
-      <InputField name="name" label="Full Name" placeholder="Last Name, First Name" fieldRef={nameRef} />
-      <InputField name="email" label="Email" type="email" placeholder="Email Address" fieldRef={emailRef} />
-      <InputField name="phone" label="Phone" type="text" placeholder="Phone Number" fieldRef={phoneRef} />
-      <Row>
-        <Col>
-          <InputField name="twitter" label={<FaTwitter size={20}/>} placeholder={"X handle"} fieldRef={xRef} />
-        </Col>
-        <Col>
-          <InputField name="linkedin" label={<FaLinkedin size={20}/>} placeholder="LinkedIn URL" fieldRef={linkedInRef} />
-        </Col>
-      </Row>
-    </Form>
-    <h3>Skills:</h3>
-    <MultiFields name="skills" />
-  </> 
-  );
+  return (
+    <>
+      <h5>Details</h5>
+      <Form className="border border-gray-600 p-4 mb-3">
+        <InputField name="name" label="Full Name" placeholder="Last Name, First Name" fieldRef={nameRef} />
+        <InputField name="email" label="Email" type="email" placeholder="Email Address" fieldRef={emailRef} />
+        <InputField name="phone" label="Phone" type="text" placeholder="Phone Number" fieldRef={phoneRef} />
+        <Row>
+          <Col>
+            <InputField name="twitter" label={<FaTwitter size={20}/>} placeholder={"X handle"} fieldRef={xRef} />
+          </Col>
+          <Col>
+            <InputField name="linkedin" label={<FaLinkedin size={20}/>} placeholder="LinkedIn URL" fieldRef={linkedInRef} />
+          </Col>
+        </Row>
+      </Form>
+      <h5>Skills</h5>
+      <MultiFields name="skills" />
+    </> 
+    );
 };
 
 export default PersonalDetails;
