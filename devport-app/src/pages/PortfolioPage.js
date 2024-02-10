@@ -39,11 +39,10 @@ const PortfolioPage = () => {
       if (code) {
         try {
           const response = await axios.get(`http://localhost:4000/callback/${code}`);
+          console.log('response: ', response);
           if(response.data.token !== undefined) {
             const accessToken = response.data.token;
             localStorage.setItem('accessToken', accessToken)
-
-            console.log('Access Token: ', accessToken);
           }
         } catch (error) {
           console.error(error);

@@ -9,7 +9,6 @@ class GithubApiClient {
 
   async request(options) {
     let response;
-
     try{
       response = await axios.get(this.base_url + options.url, {
         method: options.method,
@@ -32,7 +31,7 @@ class GithubApiClient {
     return {
       ok: response.ok,
       status: response.status,
-      body: response.status !== 204 ? await response.json() : null
+      body: response.message ? response.message : response.data,
       };
     }    
 
