@@ -1,4 +1,6 @@
 const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 const cors = require('cors')
 const axios = require('axios')
 const bodyParser = require('body-parser');
@@ -25,6 +27,7 @@ mongoose.connect('mongodb://localhost/devport', {
 });
 
 app.use(bodyParser.json());
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.use('/users', userRoutes);
 app.use('/education', educationRoutes);
 app.use('/experience', experienceRoutes);
@@ -32,25 +35,29 @@ app.use('/project', projectRoutes);
 app.use('/skill', skillRoutes);
 app.use(cors())
 
-app.get('/oauth', (req, res) => {
-  res.redirect(`${authURL}`);
+app.get('/', (req, res) => {
+  res.redirect('/docs')
 })
 
-app.get("/callback/:code", (req, res) => {
-  axios.post(`${oauth}`, {
-      client_id: `${clientID}`,
-      client_secret: `${clientSecret}`,
-      code: req.params.code
-  }, {
-      headers: {
-          Accept: "application/json"
-      }
-  }).then((result) => {
-      res.json({"token": result.data.access_token});
-  }).catch((err) => {
-      console.log(err);
-  });
-});
+// app.get('/oauth', (req, res) => {
+//   res.redirect(`${authURL}`);
+// })
+
+// app.get("/callback/:code", (req, res) => {
+//   axios.post(`${oauth}`, {
+//       client_id: `${clientID}`,
+//       client_secret: `${clientSecret}`,
+//       code: req.params.code
+//   }, {
+//       headers: {
+//           Accept: "application/json"
+//       }
+//   }).then((result) => {
+//       res.json({"token": result.data.access_token});
+//   }).catch((err) => {
+//       console.log(err);
+//   });
+// });
 
 app.get('/generate-cv/:userId', async(req, res) => {
   try{

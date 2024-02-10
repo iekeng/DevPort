@@ -93,13 +93,13 @@ export default function Education({title}) {
                 <InputField name="institution" label="Institution" placeholder="Institution" fieldRef={institutionRef} />
                 <InputField name="degree" label="Degree" placeholder="Degree" fieldRef={degreeRef} />
                 <InputField name="course" label="Course" placeholder="Course" fieldRef={courseRef} />
-                <InputField name="city" label="City" placeholder="City" locationRef={courseRef} />
+                <InputField name="location" label="City" placeholder="City" locationRef={courseRef} />
                 <Row>
                     <Col>
-                        <InputField name="start date" label="Start Date" placeholder="Start Date" type="date" fieldRef={startDateRef} />
+                        <InputField name="startDate" label="Start Date" placeholder="Start Date" type="date" fieldRef={startDateRef} />
                     </Col>
                     <Col>
-                        <InputField name="end date" label="End Date" placeholder="End Date" type="date" fieldRef={endDateRef} />
+                        <InputField name="endDate" label="End Date" placeholder="End Date" type="date" fieldRef={endDateRef} />
                     </Col>
                 </Row>
             </Form>
